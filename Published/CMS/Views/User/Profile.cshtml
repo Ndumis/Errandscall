@@ -1,0 +1,157 @@
+﻿@model ErrandscallDatabase.Client
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary float-left">Edit Profile Info</h6>
+            <h6 class="m-0 font-weight-bold text-primary float-right"><a href="@Url.Action("EditUser","User", new { @Id = Model.Id})"><i class="fas fa-2x fa-plus-circle"></i></a></h6>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="row">
+
+        <!-- Profile Image -->
+        <div class="col-xl-3 col-lg-5">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #000">
+                    <h6 class="m-0 font-weight-bold text-primary">Profile Image</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body center-align">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.Id)
+                        <img class="rounded-circle" src="~/Content/Images/apple-touch-icon.png" alt="" width="200" height="200">
+
+                        <div class="form-group">
+                            <input style="width:100%;" type="file" class="form-control" name="Picture" id="Picture" required />
+                        </div>
+
+                        <button type="submit" class="btn btn-secondary btn-user" id="">
+                            Submit
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- My Info -->
+        <div class="col-xl-6 col-lg-7">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #000">
+                    <h6 class="m-0 font-weight-bold text-primary">My Info</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="row" style="color: black">
+                        <div class="col-sm-12">
+                            <b for="first_name">Initials</b><br />
+                            <label>@Model.Initials</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <b for="first_name">Full Names</b><br />
+                            <label>@Model.Name</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <b for="first_name">Surname</b><br />
+                            <label>@Model.Surname</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <b for="first_name">Email Address</b><br />
+                            <label>@Model.Email</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <b for="first_name">Cell Number</b><br />
+                            <label>@Model.CellNumber</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <b for="first_name">Id Number</b><br />
+                            <label>@Model.IdNo</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <b for="first_name">Date Of Birth</b><br />
+                            <label>@Model.Dob</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <b for="first_name">Physical Address</b><br />
+                            <label>@Model.Address1</label><br />
+                            <label>@Model.Address2</label><br />
+                            <label>@Model.Address3</label><br />
+                            <label>@Model.Address4</label><br />
+                        </div>
+                        <div class="col-sm-6">
+                            <b for="first_name">Postal Code</b><br />
+                            <label>@Model.PostalCode</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <b for="first_name">Citizen</b><br />
+                            <label>@Model.Citizen.Description</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Change Password -->
+        <div class="col-xl-3 col-lg-5">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #000">
+                    <h6 class="m-0 font-weight-bold text-primary">Change Password</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.Id)
+
+                        <div class="form-group">
+                            <input class="form-control CheckPassword" type="password" id="OldPassword" name="Password" placeholder="Old Password" required />
+                            <i onclick="showPassword('OldPassword')" class="fa fa-eye-slash" id="display" style="float: right; margin-top: -25px; margin-left:90%; padding-right: 10px; position: relative; z-index: 1; cursor: pointer; color: #000;">  </i>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control CheckPassword" type="password" id="Password" name="Password" placeholder="New Password" required />
+                            <i onclick="showPassword('Password')" class="fa fa-eye-slash" id="display" style="float: right; margin-top: -25px; margin-left:90%; padding-right: 10px; position: relative; z-index: 1; cursor: pointer; color: #000;">  </i>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control CheckPassword" type="password" id="ConfirmPassword" name="ConfirmPassword" placeholder="Confrim Password" required />
+                            <i onclick="showPassword('ConfirmPassword')" class="fa fa-eye-slash" id="display" style="float: right; margin-top: -25px; margin-left:90%; padding-right: 10px; position: relative; z-index: 1; cursor: pointer; color: #000;">  </i>
+
+                            <label id="CPassword" style="color:red"> </label>
+                        </div>
+
+
+
+
+                        <button type="submit" class="btn btn-secondary btn-user" id="submit">
+                            Submit
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.onreadystatechange = function () {
+        if (this.readyState === 'complete') {
+            SetNavActive('Profile');
+        }
+    };
+</script>

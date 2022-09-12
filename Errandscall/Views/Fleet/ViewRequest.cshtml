@@ -1,0 +1,209 @@
+﻿@model ErrandscallDatabase.Request
+@{
+    ViewBag.Title = "View Request";
+}
+
+
+<div class="row">
+
+    <div class="col-xl-1 col-lg-7">
+    </div>
+    <div class="col-xl-3 col-lg-7">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #000">
+                <h6 class="m-0 font-weight-bold text-primary">Request Info</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="row" style="color: black">
+                    <div class="col-sm-12">
+                        <b for="first_name">Initials & Surname</b><br />
+                        <label>@Model.Client.Initials @Model.Client.Surname</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <b for="first_name">Vehicle</b><br />
+                        <label>@Model.Vehicle.VehicleMake.Description</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <b for="first_name">Model</b><br />
+                        <label>@Model.Vehicle.VehicleModel.Description</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <b for="first_name">Service Type</b><br />
+                        <label>@Model.Services.Description</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <b for="first_name">Status</b><br />
+                        <label>@Model.RequestStatus.Description</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-7 col-lg-7">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #000">
+                <h6 class="m-0 font-weight-bold text-primary">Documents</h6>
+                <h6 class="m-0 font-weight-bold text-primary float-right"><a href="#" onclick="RequestDocumet(true,null,@Model.Id)"><i class="fas fa-2x fa-plus-circle"></i></a></h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Type
+                                </th>
+                                <th>
+                                    Index
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model.RequestDocument)
+                            {
+                                <tr>
+
+                                    <th>
+                                        @item.document_name
+                                    </th>
+                                    <th>
+                                        @item.DocumentType.Description
+                                    </th>
+                                    <th>
+                                        @item.document_mime
+                                    </th>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-xl-1 col-lg-7">
+    </div>
+    <div class="col-xl-10 col-lg-4">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #000">
+                <h6 class="m-0 font-weight-bold text-primary">Messages</h6>
+                <h6 class="m-0 font-weight-bold text-primary float-right"><a href="#" onclick="RequestMessage(true,@Model.Id)"><i class="fas fa-2x fa-plus-circle"></i></a></h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Message
+                                </th>
+                                <th>
+                                    
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model.Message)
+                            {
+                                <tr>
+
+                                    <th>
+                                        @item.Client.Name
+                                    </th>
+                                    <th>
+                                        <p style="white-space: pre-line">@item.Message1</p>
+                                    </th>
+                                    <th>
+                                        @item.AddedOnDateTime
+                                    </th>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RequestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <br />
+    <br />
+    <br />
+    <div class="modal-dialog modal-lg " role="document">
+        <div class="modal-content" style="background: white; border:0">
+            <div class="modal-body">
+                <div id="exampleModalBody"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.onreadystatechange = function () {
+        if (this.readyState === 'complete') {
+            SetNavActive('Request');
+        }
+    };
+
+
+    function RequestDocumet(Clear, Id, rId) {
+
+        $.ajax(
+            {
+                url: '@Url.Action("_RequestDocumet")?' + '&Id=' + Id + '&rId=' + rId,
+                type: 'GET',
+                success: function (result) {
+                    if(Clear)
+                        $('#exampleModalBody').html(result);
+                    else
+                        $('#exampleModalBody').html( result);
+                    $('#RequestModal').modal('show');
+
+                },
+                error: function (result) {
+
+                }
+            }
+        );
+    }
+
+    function RequestMessage(Clear, Id) {
+
+        $.ajax(
+            {
+                url: '@Url.Action("_RequestMessage")?' + '&Id=' + Id,
+                type: 'GET',
+                success: function (result) {
+                    if(Clear)
+                        $('#exampleModalBody').html(result);
+                    else
+                        $('#exampleModalBody').html( result);
+                    $('#RequestModal').modal('show');
+
+                },
+                error: function (result) {
+
+                }
+            }
+        );
+    }
+</script>

@@ -1,0 +1,204 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/logo.png'); background-size: contain">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+            <div class="col-md-9 ftco-animate pb-5">
+                <p class="breadcrumbs mb-2"><span class="mr-2"><a href="/Home/">Home <i class="fa fa-chevron-right"></i></a></span> <span>Contact us <i class="fa fa-chevron-right"></i></span></p>
+                <h1 class="mb-0 bread">Contact us</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="wrapper">
+                    <div class="row no-gutters">
+                        <div class="col-md-7 d-flex">
+                            <div class="contact-wrap w-100 p-md-5 p-4">
+                                <h3 class="mb-4">Get in touch</h3>
+                                <form class="contact-form form-style-2" id="contactForm">
+                                    <div class="contact-form-success alert alert-success mt-4" id="contactSuccess" hidden>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <span id="name-info" class="info"></span><br />
+                                                <input type="text" maxlength="100" class="form-control InputBox" name="name" id="name" placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <span id="surname-info" class="info"></span><br />
+                                                <input type="text" maxlength="100" class="form-control InputBox" name="surname" id="surname" placeholder="Surname">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <span id="email-info" class="info"></span><br />
+                                                <input type="email" maxlength="100" class="form-control InputBox" name="email" id="email" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <span id="subject-info" class="info"></span><br />
+                                                <input type="text" maxlength="100" class="form-control InputBox" name="subject" id="subject" placeholder="Subject">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <span id="message-info" class="info"></span><br />
+                                                <textarea maxlength="5000" rows="8" class="form-control InputBox" name="message" id="message" placeholder="Message"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input type="button" value="Send Message" class="btn btn-primary btn-modern" onclick="sendContact()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-5 d-flex align-items-stretch">
+
+                            <div class="tabulation-2 mt-4">
+                                <ul class="nav nav-pills nav-fill d-md-flex d-block">
+                                    <li class="nav-item mb-md-0 mb-2">
+                                        <a class="nav-link active py-2" data-toggle="tab" href="#home1">Contact us</a>
+                                    </li>
+                                    <li class="nav-item px-lg-2 mb-md-0 mb-2">
+                                        <a class="nav-link py-2" data-toggle="tab" href="#home2"> Location </a>
+                                    </li>
+                                    <!-- <li class="nav-item"> -->
+                                    <!-- <a class="nav-link py-2 mb-md-0 mb-2" data-toggle="tab" href="#home3"> </a> -->
+                                    <!-- </li> -->
+                                </ul>
+                                <div class="tab-content rounded mt-2">
+                                    <div class="tab-pane container p-0 active" id="home1">
+                                        <div class="w-100 p-lg-5 p-4">
+                                            <div class="dbox w-100 d-flex align-items-start">
+                                                <div class="icon d-flex align-items-center justify-content-center">
+                                                    <span class="fa fa-map-marker"></span>
+                                                </div>
+                                                <div class="text pl-3">
+                                                    <p><span>Address:</span> 1 Chadwick Avenue, Cnr Andries Street, Wynberg, Sandton, 2090</p>
+                                                </div>
+                                            </div>
+                                            <div class="dbox w-100 d-flex align-items-center">
+                                                <div class="icon d-flex align-items-center justify-content-center">
+                                                    <span class="fa fa-phone"></span>
+                                                </div>
+                                                <div class="text pl-3">
+                                                    <p><span>Phone:</span> <a href="tel://0845085841">+27 84 508 5841</a></p>
+                                                </div>
+                                            </div>
+                                            <div class="dbox w-100 d-flex align-items-center">
+                                                <div class="icon d-flex align-items-center justify-content-center">
+                                                    <span class="fa fa-paper-plane"></span>
+                                                </div>
+                                                <div class="text pl-3">
+                                                    <p><span>Email:</span> <a href="mailto:info@errandscall.co.za">info@errandscall.co.za</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane container p-0 fade" id="home2">
+                                        <div class=" w-100 p-lg-1 p-1">
+                                            <p> </p>
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3582.842096729309!2d28.075816515027974!3d-26.104072683482446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9572cd31c42323%3A0x17ac522f6c128e7!2s1%20Chadwick%20Ave%2C%20Wynberg%2C%20Sandton%2C%202090!5e0!3m2!1sen!2sza!4v1642055688981!5m2!1sen!2sza" width="410" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane container p-0 fade" id="home3">
+                                        <p> </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div id="map1" class="map1"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+	function sendContact() {
+		var valid;
+		valid = validateContact();
+		if(valid) {
+			jQuery.ajax({
+				url: "@Url.Action("Contact")",
+				data:'name='+$("#name").val()+
+				'&surname='+$("#surname").val()+
+				'&email='+$("#email").val()+
+				'&subject='+$("#subject").val()+
+				'&message='+$(message).val(),
+				type: "POST",
+				success:function(data){
+					debugger;
+                    $("#contactSuccess").html(data);
+                    $('#contactSuccess').removeAttr('hidden');
+                    $("#name").val("")
+                    $("#surname").val("")
+                    $("#email").val("")
+                    $("#subject").val("")
+                    $("#message").val("")
+				},
+				error:function (data){
+					debugger;
+			   }
+			});
+		}
+	}
+
+	function validateContact() {
+		var valid = true;
+		$(".InputBox").css('border-color','');
+		$(".info").html('');
+		if(!$("#name").val()) {
+			$("#name-info").html("(required)");
+			$("#name").css('border-color','#ff0000');
+			valid = false;
+		}
+		if(!$("#surname").val()) {
+			$("#surname-info").html("(required)");
+			$("#surname").css('border-color','#ff0000');
+			valid = false;
+		}
+		if(!$("#email").val()) {
+			$("#email-info").html("(required)");
+			$("#email").css('border-color','#ff0000');
+			valid = false;
+		}
+		if(!$("#email").val().match(/^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/)) {
+			$("#email-info").html("(invalid)");
+			$("#email").css('border-color','#ff0000');
+			valid = false;
+		}
+		if(!$("#subject").val()) {
+			$("#subject-info").html("(required)");
+			$("#subject").css('border-color','#ff0000');
+			valid = false;
+		}
+		if(!$("#message").val()) {
+			$("#message-info").html("(required)");
+			$("#message").css('border-color','#ff0000');
+			valid = false;
+		}
+		return valid;
+	}
+</script>

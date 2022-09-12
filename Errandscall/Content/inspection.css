@@ -1,0 +1,78 @@
+﻿.thumb {
+    display: none;
+}
+
+.icao-table {
+    max-height: 200px;
+    width: 100%;
+}
+
+    .icao-table tbody {
+        overflow-y: auto;
+        width: 100%;
+        max-height: 300px;
+    }
+
+    .icao-table thead, .icao-table tbody, .icao-table tr {
+        display: block;
+    }
+
+#myDropdown {
+    margin-top: -180px;
+    margin-left: 100px;
+    border: 1px solid #d3d3d3;
+}
+
+.dropdown-content label {
+    color: #333;
+    font-size: 12px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 350px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+.dropdown-content {
+    padding: 10px;
+}
+
+    .dropdown-content a:hover {
+        background-color: #ddd
+    }
+
+.show {
+    display: block;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.btn-dropdown {
+    position: fixed;
+    z-index: 1000;
+    right: 30px;
+    bottom: 15px;
+}
+
+.dropbtn {
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 4px 16px rgba(0,0,0,0.2);
+}

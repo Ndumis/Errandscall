@@ -1,0 +1,145 @@
+﻿@model IEnumerable<ErrandscallDatabase.Vehicle>
+@{
+    ViewBag.Title = "Vehicle Management";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3" style="background-color: #000">
+            <h6 class="m-0 font-weight-bold text-primary float-left">Vehicle List</h6>
+            <h6 class="m-0 font-weight-bold text-primary float-right"><a onclick="NewVehicleShow(true,null)"><i class="fas fa-2x fa-plus-circle"></i></a></h6>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Client)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.VehicleMake)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.VehicleModel)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.VIN)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Reg)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DayOfExpire)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td> @Html.DisplayFor(modelItem => item.Id)</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Client.Initials) @Html.DisplayFor(modelItem => item.Client.Surname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehicleMake.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehicleModel.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VIN)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Reg)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DayOfExpire)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("ViewVehicle", new { Id = item.Id })" class="btn btn-success btn-xs"><i> View</i></a>
+                                    <a href="#" onclick="RequestServiceShow(true, @item.Id)" class="btn btn-info btn-xs"><i> Request</i></a>
+                                    <a href="#" onclick="NewVehicleShow(true, @item.Id)" class="btn btn-warning btn-xs"><i> Edit</i></a>
+                                    <a href="#" data-toggle="modal" data-id="@item.Id" class="btn btn-danger btn-xs DeleteVehicleModal"><i> Delete</i></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="VehicleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <br />
+    <div class="modal-dialog modal-lg " role="document">
+        <div class="modal-content" style="background: white; border:0">
+            <div class="modal-header">
+                <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Request </h1>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="exampleModalBody"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.onreadystatechange = function () {
+        if (document.readyState == "complete") {
+            SetNavActive( 'VehicleManagement');
+        }
+    }
+
+    function NewVehicleShow(Clear, Id) {        
+        $.ajax(
+            {
+                url: '@Url.Action("_NewVehicle")?' + '&Id=' + Id,
+                type: 'GET',
+                success: function (result) {
+                    if(Clear)
+                        $('#exampleModalBody').html(result);
+                    else
+                        $('#exampleModalBody').html( result);
+                    $('#VehicleModal').modal('show');
+
+                }
+            }
+        );
+    }
+
+    //_Request
+    function RequestServiceShow(Clear, VId) {
+
+        $.ajax(
+            {
+                url: '@Url.Action("_Request")?' +'&VId=' + VId,
+                type: 'GET',
+                success: function (result) {
+                    if(Clear)
+                        $('#exampleModalBody').html(result);
+                    else
+                        $('#exampleModalBody').html( result);
+                    $('#VehicleModal').modal('show');
+
+                }
+            }
+        );
+    }
+</script>

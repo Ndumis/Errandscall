@@ -1,0 +1,681 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Errandscall - @ViewBag.Title</title>
+    <link rel="icon" type="image/png" href="~/Content/Images/apple-touch-icon.png" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="~/Scripts/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Content/sb-admin-2.min.css" rel="stylesheet" />
+
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+    <link href="~/Content/Sidemenu.css" rel="stylesheet" />
+    <link href="~/Content/ErrorClass.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/CustomStyle.css" rel="stylesheet" />
+    <link href="~/Content/Animate.css" rel="stylesheet" />
+    <link href="~/Content/jsonTree.css" rel="stylesheet" />
+
+    <!-- Searchable dropdown css-->
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion">
+
+            <!-- Sidebar - Brand -->
+            @*<p class="text-center text-light mb-0 font-weight-bold">Version: 1.1</p>*@
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Home")">
+                <img src="~/Content/Images/logo.png" />
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0" />
+
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item " data-navactive="Dashboard">
+                <a class="nav-link" href="@Url.Action("Index","Home")">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Admin
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item" data-actionid="1" data-navactive="Profile">
+                <a class="nav-link" href="@Url.Action("Profile","User")">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-actionid="1" data-navactive="User">
+                <a class="nav-link" href="@Url.Action("User","User")">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>System Users</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-navactive="ClientManagement">
+                <a class="nav-link" href="@Url.Action("ClientManagement","User")">
+                    <i class="fas fa-fw fa-users-cog"></i>
+                    <span>Client Management</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+
+            <div class="sidebar-heading">
+                Fleet Management
+            </div>
+
+            <li class="nav-item" data-navactive="VehicleManagement">
+                <a class="nav-link" href="@Url.Action("VehicleManagement", "Fleet")">
+                    <i class="fas fa-truck"></i>
+                    <span>Vehicle Management</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-navactive="Request">
+                <a class="nav-link" href="@Url.Action("Request","Fleet")">
+                    <i class="fas fa-book-open"></i>
+                    <span>Request Management</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+            <div class="sidebar-heading">
+                News
+            </div>
+
+            <li class="nav-item" data-navactive="NewsFeed">
+                <a class="nav-link" href="@Url.Action("NewsFeed", "News")">
+                    <i class="fas fa-newspaper"></i>
+                    <span>News Feed</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search noblock" id="" style="z-index:1401">
+                        <h3 id="PageTitle">@ViewBag.Title</h3>
+                    </form>
+
+                    <!-- Topbar Search -->
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto" style="z-index:1401">
+
+                        @*<li class="nav-item dropdown no-arrow mx-1">
+                                <form class="noblock" id="PageHeader">
+                                    <div>
+                                        <input type="text" name="input" class="input" id="search-input">
+                                        <button type="reset" class="search " id="search-btn" onclick="expand()"></button>
+                                    </div>
+                                </form>
+                            </li>
+                            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                            <li class="nav-item dropdown no-arrow d-sm-none">
+                                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-search fa-fw"></i>
+                                    </a>
+                                    <!-- Dropdown - Messages -->
+                                    <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                        <form class="form-inline mr-auto w-100 navbar-search">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="button">
+                                                        <i class="fas fa-search fa-sm"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>*@
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter" id="bellCounter">...</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" id="dropdownMessages">
+                                <h6 class="dropdown-header">
+                                    Alerts Center
+                                </h6>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-envelope fa-fw"></i>
+                                <!-- Counter - Messages -->
+                                <span class="badge badge-danger badge-counter">7</span>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                                <h6 class="dropdown-header">
+                                    Message Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div class="font-weight-bold">
+                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
+                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
+                                        <div class="status-indicator"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
+                                        <div class="small text-gray-500">Jae Chun · 1d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
+                                        <div class="status-indicator bg-warning"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
+                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
+                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle" src="~/Content/Images/apple-touch-icon.png" alt="" width="60" height="60">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="@Url.Action("Profile","User")">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="https://www.errandscall.co.za/">
+                                    <i class="fas fa-link fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Website
+                                </a>
+                                <a class="dropdown-item" href="@Url.Action("Index","Setting")">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="@Url.Action("ActivityLog","Audit")">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                <div class="mt-2" id="RenderBody">
+                    @RenderBody()
+                </div>
+
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; @DateTime.Now.Year Errandscall</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Logout Modal-->
+    @using (Html.BeginForm("LogOff", "Login", FormMethod.Post, new { @class = "noblock" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <br />
+            <br />
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="color:black">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><b>Ready to Leave?</b></h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"><b>Select "Logout" below if you are ready to end your current session.</b></div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit" id="Logout">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    @using (Html.BeginForm("Delete", "User", FormMethod.Post, new { @class = "noblock" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal fade" id="DeleteUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <br />
+            <br />
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="color:black">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><b>Are you sure to delete?</b></h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <b>Select "Yes" below if you are sure to delete current record.</b>
+                            <input type="hidden" name="DeleteId" id="DeleteId" />
+                        </div>
+                        <div class="form-group">
+                            @Html.TextArea("Comment", new { @class = "form-control form-control-user", @placeholder = "Enter Reason...", @required = "required", @rows = "5" })
+                            @Html.ValidationMessage("Comment", "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">No</button>
+                        <button class="btn btn-success" type="submit">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @using (Html.BeginForm("DeleteRequest", "Fleet", FormMethod.Post, new { @class = "noblock" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal fade" id="DeleteRequestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <br />
+            <br />
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="color:black">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><b>Are you sure to delete?</b></h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <b>Select "Yes" below if you are sure to delete current record.</b>
+                            <input type="hidden" name="DeleteRequestId" id="DeleteRequestId" />
+                        </div>
+                        <div class="form-group">
+                            @Html.TextArea("Comment", new { @class = "form-control form-control-user", @placeholder = "Enter Reason...", @required = "required", @rows = "5" })
+                            @Html.ValidationMessage("Comment", "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">No</button>
+                        <button class="btn btn-success" type="submit">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    @using (Html.BeginForm("DeleteVehicle", "Fleet", FormMethod.Post, new { @class = "noblock" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal fade" id="DeleteVehicleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <br />
+            <br />
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="color:black">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><b>Are you sure to delete?</b></h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <b>Select "Yes" below if you are sure to delete current record.</b>
+                            <input type="hidden" name="DeleteVehicleId" id="DeleteVehicleId" />
+                        </div>
+                        <div class="form-group">
+                            @Html.TextArea("Comment", new { @class = "form-control form-control-user", @placeholder = "Enter Reason...", @required = "required", @rows = "5" })
+                            @Html.ValidationMessage("Comment", "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">No</button>
+                        <button class="btn btn-success" type="submit">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <br />
+        <br />
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want save?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @*<div class="modal-body">
+
+                    </div>*@
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="btnSaveChanges" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="AutoLogoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <br />
+        <br />
+        <div class="modal-dialog modal-lg " role="document">
+            <div class="modal-content" style="background: transparent; border:0">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color:white; border-bottom-color:white">You will be logged out due to inactivity</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="containerTimer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="SessionEndModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <br />
+        <br />
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">You have another session active on another tab/browser, are you sure you want to end it.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" id="btnSessionsEnd" href="javascript:void(0)">Confirm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="LookupModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <br />
+        <br />
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<h5 class="modal-title">Ready to Leave?</h5>*@
+                    <button class="btn btn-outline-secondary btn-danger close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+
+                </div>
+                <div class="modal-body" id="LookupBody"> </div>
+                @*<div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="HelpdeskModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <br />
+        <br />
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                @*<div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>*@
+                <div class="modal-body" id="HelpdeskBody"> </div>
+                @*<div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <!-- Popper.JS -->
+    <script src="~/Scripts/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/Scripts/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/Scripts/sb-admin-2.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="~/Scripts/chart.js/Chart.min.js"></script>
+
+    <script src="~/Scripts/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
+    <script src="~/Scripts/bootstrap-notify.js"></script>
+
+    <script src="~/Scripts/underscore-min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/Scripts/demo/chart-area-demo.js"></script>
+    <script src="~/Scripts/demo/chart-pie-demo.js"></script>
+    <script src="~/Scripts/CustomScript.js"></script>
+
+    @*<script src="~/Scripts/Validation.js"></script>*@
+
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="~/SignalR/hubs"></script>
+    <script src="~/Scripts/timer.js"></script>
+    <script src="~/Scripts/progressbar.js"></script>
+    <script src="~/Scripts/jsonTree.js"></script>
+    <script src="~/Scripts/jsonTreeViewer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+
+    <script src="~/Scripts/chosen.jquery.js"></script>
+    <script src="~/Id_Check/UserIdCheck.js"></script>
+    <script type="text/javascript">
+        function initMap() {
+
+            var input = document.getElementById('Address1');
+
+            var options = {
+                //types: ['establishment']
+            };
+            //debugger
+            var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+            autocomplete.setFields(['address_components', 'place_id', 'geometry', 'name', 'formatted_address', 'formatted_phone_number', 'opening_hours', 'website', 'photos']);
+
+
+            autocomplete.addListener('place_changed', placechange);
+
+            function placechange() {
+
+                var place = autocomplete.getPlace();
+                //debugger;
+                $(document.getElementById('Address1')).val(place.address_components[0].long_name + ' ' + place.address_components[1].long_name);
+                $(document.getElementById('Address2')).val(place.address_components[2].long_name);
+                $(document.getElementById('Address3')).val(place.address_components[3].long_name);
+                $(document.getElementById('Address4')).val(place.address_components[5].long_name);
+                $(document.getElementById('PostalCode')).val(place.address_components[7].long_name);
+            }
+        }
+
+    $(document).ready(function () {
+
+        @if ( TempData["Alerts"] != null)
+        {
+            Errandscall.Models.JSONReturn jSONReturn =  TempData["Alerts"] as Errandscall.Models.JSONReturn;
+            <text>
+                ShowAlert('@jSONReturn.Message', '@jSONReturn.AlertType');
+            </text>
+         }
+
+        //dataTable
+        $("#dataTable").DataTable();
+        $("#VehicleDataTable").DataTable();
+        $("#ServiceDataTable").DataTable();
+        $("#DocumentTypeDataTable").DataTable();
+
+        $(".CellNo").keyup(function () {
+            $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d)+$/, "($1) $2-$3"));
+        });
+
+        $(".DeleteUserModal").click(function () {
+            $('#DeleteId').val($(this).data('id'));
+            $('#DeleteUserModal').modal('show');
+        });
+
+        $(".DeleteRequestModal").click(function () {
+            $('#DeleteRequestId').val($(this).data('id'));
+            $('#DeleteRequestModal').modal('show');
+        });
+
+        $(".DeleteVehicleModal").click(function () {
+            $('#DeleteVehicleId').val($(this).data('id'));
+            $('#DeleteVehicleModal').modal('show');
+        });
+
+        $(".CheckPassword").keyup(function () {
+            if ($("#Password").val() === $("#ConfirmPassword").val()) {
+                $("#CPassword").text("");
+                $('#submit').prop('disabled', false);
+            } else {
+                $("#CPassword").text("Password does not match...");
+                $('#submit').prop('disabled', true);
+            }
+        });
+
+    })
+
+        function showPassword(a) {
+            var x = document.getElementById(a);
+            var c = x.nextElementSibling
+            if (x.getAttribute('type') == "password") {
+                c.removeAttribute("class");
+                c.setAttribute("class", "fa fa-eye");
+                x.removeAttribute("type");
+                x.setAttribute("type", "text");
+            } else {
+                x.removeAttribute("type");
+                x.setAttribute('type', 'password');
+                c.removeAttribute("class");
+                c.setAttribute("class", "fa fa-eye-slash");
+            }
+        }
+    </script>
+
+
+    <!-- Google API Addressb -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5MjVLwLtK1CgWT5L3V9j4T_LO0onLe9w&libraries=places&callback=initMap&language=za&region=ZA"></script>
+</body>
+</html>

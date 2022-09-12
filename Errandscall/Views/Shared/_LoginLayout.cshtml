@@ -1,0 +1,205 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="~/Content/Images/apple-touch-icon.png" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Errandscall - Login</title>
+
+    <link rel="icon" type="image/png" href="~/Content/Images/apple-touch-icon.png" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="~/Scripts/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+    <link href="~/Content/Sidemenu.css" rel="stylesheet" />
+    <link href="~/Content/ErrorClass.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/CustomStyle.css" rel="stylesheet" />
+    <link href="~/Content/Animate.css" rel="stylesheet" />
+    <link href="~/Content/jsonTree.css" rel="stylesheet" />
+
+    <!-- Searchable dropdown css-->
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+    <!-- Main CSS-->
+    <link href="~/Content/css/main.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gradient-primary">
+    @RenderBody()
+
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <!-- Popper.JS -->
+    <script src="~/Scripts/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/Scripts/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/Scripts/sb-admin-2.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="~/Scripts/chart.js/Chart.min.js"></script>
+
+    <script src="~/Scripts/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
+    <script src="~/Scripts/bootstrap-notify.js"></script>
+
+    <script src="~/Scripts/underscore-min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/Scripts/demo/chart-area-demo.js"></script>
+    <script src="~/Scripts/demo/chart-pie-demo.js"></script>
+    <script src="~/Scripts/CustomScript.js"></script>
+
+    @*<script src="~/Scripts/Validation.js"></script>*@
+
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+    <script src="~/SignalR/hubs"></script>
+    <script src="~/Scripts/timer.js"></script>
+    <script src="~/Scripts/progressbar.js"></script>
+    <script src="~/Scripts/jsonTree.js"></script>
+    <script src="~/Scripts/jsonTreeViewer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+
+    <script src="~/Scripts/chosen.jquery.js"></script>
+    <!-- Main JS-->
+    <script src="~/Scripts/js/global.js"></script>
+
+
+
+    <script>
+        function initMap() {
+
+            var input = document.getElementById('Address1');
+
+            var options = {
+                //types: ['establishment']
+            };
+            //debugger
+            var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+            autocomplete.setFields(['address_components', 'place_id', 'geometry', 'name', 'formatted_address', 'formatted_phone_number', 'opening_hours', 'website', 'photos']);
+
+
+            autocomplete.addListener('place_changed', placechange);
+
+            function placechange() {
+
+                var place = autocomplete.getPlace();
+                //debugger;
+                $(document.getElementById('Address1')).val(place.address_components[0].long_name + ' ' + place.address_components[1].long_name);
+                $(document.getElementById('Address2')).val(place.address_components[2].long_name);
+                $(document.getElementById('Address3')).val(place.address_components[3].long_name);
+                $(document.getElementById('Address4')).val(place.address_components[5].long_name);
+                $(document.getElementById('PostalCode')).val(place.address_components[7].long_name);
+            }
+        }
+
+        $(document).ready(function () {
+
+            @if ( TempData["Alerts"] != null)
+            {
+                Errandscall.Models.JSONReturn jSONReturn =  TempData["Alerts"] as Errandscall.Models.JSONReturn;
+                <text>
+                    ShowAlert('@jSONReturn.Message', '@jSONReturn.AlertType');
+                </text>
+             }
+
+            $(".OtpOption").hide();
+            $("input[name$='Otp']").click(function () {
+                //debugger
+                $(".OtpOption").hide();
+                $("#" + $(this).val()).show();
+
+                if ($(this).val() === "EmailAddress") {
+                    $("#OptEmailAddress").attr('required', '');
+                    $("#OptCellphoneNumber").removeAttr('required');
+                } else {
+                    $("#OptCellphoneNumber").attr('required', '');
+                    $("#OptEmailAddress").removeAttr('required');
+                }
+            });
+
+            $("input[name$='Citizen']").click(function () {
+                debugger
+                $(".IdType").hide();
+                $("#" + $(this).val()).show();
+                $("#Cit" + $(this).val()).attr('required', '');
+            });
+
+
+
+            $(".CellNo").keyup(function () {
+                $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d)+$/, "($1) $2-$3"));
+            });
+
+
+            $(".DateOfBirth").datetimepicker({
+                timepicker: false,
+                format: 'd/m/Y'
+            });
+
+
+            $(".CheckPassword").keyup(function () {
+                //var pw = $("#Password").val();
+                //var cpw = $("#ConfirmPassword").val();
+                if ($("#Password").val() === $("#ConfirmPassword").val()) {
+                    $("#CPassword").text("");
+                    $('#submit').prop('disabled', false);
+                } else {
+                    $("#CPassword").text("Password does not match...");
+                    $('#submit').prop('disabled', true);
+                }
+            });
+
+        });
+
+        function showPassword(a) {
+            var x = document.getElementById(a);
+            var c = x.nextElementSibling
+            if (x.getAttribute('type') == "password") {
+                c.removeAttribute("class");
+                c.setAttribute("class", "fa fa-eye");
+                x.removeAttribute("type");
+                x.setAttribute("type", "text");
+            } else {
+                x.removeAttribute("type");
+                x.setAttribute('type', 'password');
+                c.removeAttribute("class");
+                c.setAttribute("class", "fa fa-eye-slash");
+            }
+        }
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5MjVLwLtK1CgWT5L3V9j4T_LO0onLe9w&libraries=places&callback=initMap&language=za&region=ZA"></script>
+
+</body>
+
+
+
+</html>

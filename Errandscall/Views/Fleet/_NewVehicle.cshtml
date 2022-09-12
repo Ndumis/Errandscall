@@ -1,0 +1,109 @@
+﻿@model ErrandscallDatabase.Vehicle
+
+@using (Html.BeginForm("_NewVehicle", "Fleet", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row justify-content-center">
+        <div class="card-body p-0">
+
+
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="p-5">
+
+                        <div class="form-group">
+                            @Html.HiddenFor(m => m.Id, new { @id = "VehicleId" })
+                            @Html.TextBoxFor(m => m.VIN, new { @class = "form-control form-control-user", @placeholder = "Enter Vehicle Vin...", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.VIN, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Reg, new { @class = "form-control form-control-user", @placeholder = "Enter Vehicle Registration...", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.Reg, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.DayOfExpire, new { @class = "form-control form-control-user", @id = "DayOfExpire", @placeholder = "Date of Expire...", @required = "required", autocomplete = "off" })
+                            @Html.ValidationMessageFor(model => model.DayOfExpire, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownList("MakeId", ViewBag.VehicleMake as SelectList, "--- Select Vehicle Make ---", new { @class = "form-control form-control-user", @onchange = "VehicleMakeChange()", @required = "@required" })
+                            @Html.ValidationMessageFor(model => model.DayOfExpire, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownList("ModelId", ViewBag.VehicleModel as SelectList, "--- Select Vehicle Model ---", new { @id = "ModelResult", @class = "form-control form-control-user ModelId", @required = "@required" })
+                            @Html.ValidationMessageFor(model => model.DayOfExpire, "", new { @class = "text-danger" })
+
+                        </div>
+                        @*<div class="form-group">
+                            <input style="width:100%;" type="file" class="form-control" name="VehicleDoCs" id="VehicleDoCs" multiple="multiple" />
+                        </div>*@
+                        @*<div class="form-group">
+                                @Html.TextAreaFor(m => m.DayOfExpire, new { @class = "form-control form-control-user", @placeholder = "Enter motivitional comment...", @rows = "4", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.DayOfExpire, "", new { @class = "text-danger" })
+                            </div>*@
+                        <button type="submit" class="btn btn-primary btn-user" id="">
+                            Submit
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+}
+
+@*<div>
+        @Html.ActionLink("Back to List", "VehicleManagement")
+    </div>*@
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#DayOfExpire").datetimepicker({
+            timepicker: false,
+            format: 'm/Y'
+        });
+
+        $(function () {
+            $("#MakeId").chosen({ width: "100%" });
+            $(".ModelId").chosen({ width: "100%" });
+
+            $("[data-mask]").inputmask();
+
+        });
+
+
+    })
+
+    function VehicleMakeChange() {
+        //alert($('#MakeId').val());
+        var id = $('#MakeId').val();
+        $.ajax({
+            url: '@Url.Action("VehicleModel")',
+            method: "POST",
+            data: { id: id},
+            success: function (data)
+            {
+                //debugger
+                var s = "<option value=''>--- Select Vehicle Model ---</option>";
+                for (var i = 0; i < data.length; i++) {
+                    s += "<option value='" + data[i].Value + "'> " + data[i].Text + "</option>";
+                }
+                $("#ModelResult").html(s);
+            }
+        });
+
+
+        $("#MakeId").chosen({ width: "100%" });
+        $(".ModelId").chosen({ width: "100%" });
+    }
+</script>

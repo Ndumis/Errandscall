@@ -1,0 +1,247 @@
+﻿@model Errandscall.Models.Lookup
+@{
+    ViewBag.Title = "Setting";
+}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header p-2">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item active"><a class="nav-link active" href="#Vehicle" data-toggle="tab">Vehicle Type</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Service" data-toggle="tab">Service Type</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#DocumentType" data-toggle="tab">Document Type</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /panel-heading -->
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="Vehicle">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #000">
+                                <h6 class="m-0 font-weight-bold text-primary">Vehicle Type</h6>
+                                <h6 class="m-0 font-weight-bold text-primary float-right"><a onclick="VehicleTypeShow(true,null)"><i class="fas fa-2x fa-plus-circle"></i></a></h6>
+                            </div>
+
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="VehicleDataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>
+
+                                                </th>
+                                                <th>
+                                                    Vehicle Make
+                                                </th>
+                                                <th>
+                                                    Vehicle Modal
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model != null)
+                                            {
+                                                int i = 0;
+                                                foreach (var item in Model.vehicleMakes)
+                                                {
+                                                    foreach (var item1 in item.VehicleModel)
+                                                    {
+                                                        i++;
+                                                        <tr>
+                                                            <td>@i</td>
+                                                            <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                                            <td>@Html.DisplayFor(modelItem => item1.Description)</td>
+                                                            <td>
+                                                                <a onclick="VehicleTypeShow(true,@item1.Id)" class="btn btn-warning btn-xs"><i> Edit</i></a>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="Service">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #000">
+                                <h6 class="m-0 font-weight-bold text-primary">Service Type</h6>
+                                <h6 class="m-0 font-weight-bold text-primary float-right"><a onclick="ServiceTypeShow(true,null)"><i class="fas fa-2x fa-plus-circle"></i></a></h6>
+                            </div>
+
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="ServiceDataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Id
+                                                </th>
+                                                <th>
+                                                    Description
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            @if (Model != null)
+                                            {
+                                                foreach (var item in Model.Services)
+                                                {
+                                                    <tr>
+                                                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                                        <td>
+                                                            <a onclick="ServiceTypeShow(true, @item.Id)" class="btn btn-warning btn-xs"><i> Edit</i></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="DocumentType">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #000">
+                                <h6 class="m-0 font-weight-bold text-primary">Document Type</h6>
+                                <h6 class="m-0 font-weight-bold text-primary float-right"><a onclick="DocumentTypeShow(true, null)"><i class="fas fa-2x fa-plus-circle"></i></a></h6>
+                            </div>
+
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="DocumentTypeDataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Id
+                                                </th>
+                                                <th>
+                                                    Description
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            @if (Model != null)
+                                            {
+                                                foreach (var item in Model.documentTypes)
+                                                {
+                                                    <tr>
+                                                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                                        <td>
+                                                            <a onclick="DocumentTypeShow(true,@item.Id)" class="btn btn-warning btn-xs"><i> Edit</i></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /tab-content -->
+            </div>
+            <!-- /panel-body -->
+        </div>
+        <!-- /col-lg-12 -->
+    </div>
+</div>
+
+
+<div class="modal fade" id="LookupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <br />
+    <div class="modal-dialog modal-lg " role="document">
+        <div class="modal-content" style="background: white; border:0">
+            <div class="modal-header">
+                @*<div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Request </h1>
+                    </div>*@
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="exampleModalBody"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function VehicleTypeShow(Clear, Id) {
+        $.ajax(
+            {
+                url: '@Url.Action("_VehicleType")?' + '&Id=' + Id,
+                type: 'GET',
+                success: function (result) {
+                    if(Clear)
+                        $('#exampleModalBody').html(result);
+                    else
+                        $('#exampleModalBody').html( result);
+                    $('#LookupModal').modal('show');
+
+                }
+            }
+        );
+    }
+
+    function ServiceTypeShow(Clear, Id) {
+        $.ajax(
+            {
+                url: '@Url.Action("_ServiceType")?' + '&Id=' + Id,
+                type: 'GET',
+                success: function (result) {
+                    if(Clear)
+                        $('#exampleModalBody').html(result);
+                    else
+                        $('#exampleModalBody').html( result);
+                    $('#LookupModal').modal('show');
+
+                }
+            }
+        );
+    }
+
+    function DocumentTypeShow(Clear, Id) {
+        $.ajax(
+            {
+                url: '@Url.Action("_DocumentType")?' + '&Id=' + Id,
+                type: 'GET',
+                success: function (result) {
+                    if(Clear)
+                        $('#exampleModalBody').html(result);
+                    else
+                        $('#exampleModalBody').html( result);
+                    $('#LookupModal').modal('show');
+
+                }
+            }
+        );
+    }
+</script>

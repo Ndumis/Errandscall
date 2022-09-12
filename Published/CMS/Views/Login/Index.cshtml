@@ -1,0 +1,84 @@
+﻿
+@using Errandscall.Models
+@model LoginDetails
+
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewBag.Title = "Login";
+
+}
+
+<style>
+    .left {
+        width: 200px;
+        float: left;
+        height: 100%;
+    }
+
+    .right {
+        margin-left: 210px;
+    }
+</style>
+
+<div class="page-wrapper p-t-30 p-b-100 font-poppins">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-4">
+            <div class="card-body">
+
+                <div class="">
+                    <img src="~/Content/Images/logo.png" style="height:150px; width:100%" />
+                </div>
+                <h2 class="title" align="center">Login</h2>
+                <hr />
+                <br />
+                @using (Html.BeginForm("Login", "Login", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post, new { @id = "contact_form", @class = "form-login" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label">Username *</label>
+                                <input class="input--style-4" type="text" name="Username" value="@Model.Username" placeholder="Email/ Id Number" required autofocus>
+                                <i class="fa fa-envelope" id="display" style="float: right; margin-top: -25px; margin-left:90%; padding-right: 10px; position: relative; z-index: 1; color: #000;">  </i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label">Password</label>
+                                <input class="input--style-4" type="password" id="Password" name="Password" value="@Model.Password" placeholder="Password" required />
+                                <i onclick="showPassword('Password')" class="fa fa-eye-slash" id="display" style="float: right; margin-top: -25px; margin-left:90%; padding-right: 10px; position: relative; z-index: 1; cursor: pointer; color: #000;">  </i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-t-15">
+                        <button class="btn btn--radius btn--green" type="submit">Submit</button>
+                        <span class="psw label">Forgot <a href="/Login/ForgotPassword" class="modal-link">password?</a></span>
+                    </div>
+                    <br />
+                    <hr />
+                    <br />
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label">Not yet a user?  <a href="/Login/Register"> Register</a></label>
+                            </div>
+                            <div class="input-group">
+                                <label class="label">Click <a href="https://www.errandscall.co.za/"> HERE</a> to go back to the Website</label>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+   
+</script>
+
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="26d3ee6dbf6b4af18af9b651fdabff02" Name="Diagram1" ZoomLevel="46">
+        <EntityTypeShape EntityType="ErrandscallModel.Login" Width="1.5" PointX="8.25" PointY="1.25" />
+        <EntityTypeShape EntityType="ErrandscallModel.Client" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="ErrandscallModel.Request" Width="1.5" PointX="7.5" PointY="8.75" />
+        <EntityTypeShape EntityType="ErrandscallModel.RequestDocument" Width="1.5" PointX="9.75" PointY="5" />
+        <EntityTypeShape EntityType="ErrandscallModel.Vehicle" Width="1.5" PointX="5.25" PointY="8.75" />
+        <EntityTypeShape EntityType="ErrandscallModel.VehicleDocument" Width="1.5" PointX="10.5" PointY="9" />
+        <EntityTypeShape EntityType="ErrandscallModel.ServiceMessage" Width="1.5" PointX="10.75" PointY="0.875" />
+        <EntityTypeShape EntityType="ErrandscallModel.Citizen" Width="1.5" PointX="0.75" PointY="2.75" />
+        <EntityTypeShape EntityType="ErrandscallModel.DocumentType" Width="1.5" PointX="7.5" PointY="5.625" />
+        <EntityTypeShape EntityType="ErrandscallModel.RequestStatus" Width="1.5" PointX="5.25" PointY="14" />
+        <EntityTypeShape EntityType="ErrandscallModel.Services" Width="1.5" PointX="5.25" PointY="5.625" />
+        <EntityTypeShape EntityType="ErrandscallModel.UserRole" Width="1.5" PointX="6" PointY="16.75" />
+        <EntityTypeShape EntityType="ErrandscallModel.VehicleMake" Width="1.5" PointX="0.75" PointY="7.375" />
+        <EntityTypeShape EntityType="ErrandscallModel.VehicleModel" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="ErrandscallModel.Feed" Width="1.5" PointX="5.25" PointY="1.75" />
+        <EntityTypeShape EntityType="ErrandscallModel.Message" Width="1.5" PointX="12.75" PointY="9.25" />
+        <AssociationConnector Association="ErrandscallModel.FK_Login_Client" />
+        <AssociationConnector Association="ErrandscallModel.FK_Login_UserRole" />
+        <AssociationConnector Association="ErrandscallModel.FK_Client_Citizen" />
+        <AssociationConnector Association="ErrandscallModel.FK_Feed_Client" />
+        <AssociationConnector Association="ErrandscallModel.FK_Message_Client" />
+        <AssociationConnector Association="ErrandscallModel.FK_Request_Client" />
+        <AssociationConnector Association="ErrandscallModel.FK_Vehicle_Client" />
+        <AssociationConnector Association="ErrandscallModel.FK_Documents_Request" />
+        <AssociationConnector Association="ErrandscallModel.FK_Message_Request" />
+        <AssociationConnector Association="ErrandscallModel.FK_Request_RequestStatus" />
+        <AssociationConnector Association="ErrandscallModel.FK_Request_Services" />
+        <AssociationConnector Association="ErrandscallModel.FK_Request_Vehicle" />
+        <AssociationConnector Association="ErrandscallModel.FK_RequestDocument_DocumentType" />
+        <AssociationConnector Association="ErrandscallModel.FK_Vehicle_VehicleMake" />
+        <AssociationConnector Association="ErrandscallModel.FK_Vehicle_VehicleModel" />
+        <AssociationConnector Association="ErrandscallModel.FK_VehicleDocument_Vehicle" />
+        <AssociationConnector Association="ErrandscallModel.FK_VehicleDocument_DocumentType" />
+        <AssociationConnector Association="ErrandscallModel.FK_Model_VehicleMake" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

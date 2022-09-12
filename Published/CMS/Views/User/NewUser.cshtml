@@ -1,0 +1,94 @@
+﻿@model ErrandscallDatabase.Client
+@{
+    ViewBag.Title = "New User";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3" style="background-color: #000">
+            @*<h6 class="m-0 font-weight-bold text-primary float-left">User</h6>*@
+            <h6 class="m-0 font-weight-bold text-primary float-right"><a href="#"><i class="fas fa-2x fa-user"></i></a></h6>
+        </div>
+
+        <div class="card-4">
+            @using (Html.BeginForm("NewUser", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="p-5">
+                            <div class="form-group">
+                                <div id="error_message"> </div>
+                                @*<label style="color:red" class="control-label" id="error_keyupValidate"></label>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="p-5">
+
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Initials, new { @class = "form-control form-control-user", @placeholder = "Enter Intitials...", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Initials, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control form-control-user", @placeholder = "Enter Full names...", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Surname, new { @class = "form-control form-control-user", @placeholder = "Enter Surname...", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-user", @placeholder = "Enter Email Address...", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.CellNumber, new { @class = "form-control form-control-user CellNo", @placeholder = "Enter Cell Number...", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.CellNumber, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.IdNo, new { @class = "form-control form-control-user", @id = "IdNo", @onkeyup = "ValidateClienID()", @placeholder = "Enter Id Number...", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.IdNo, "", new { @class = "text-danger" })
+                                <div id="success_message"> </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.Dob, new { @class = "form-control form-control-user", @id = "Dob", @placeholder = "Date Of Birth...", @required = "required", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.Dob, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group" style="padding:0px;">
+                                @Html.TextBoxFor(m => m.Address1, new { @class = "form-control form-control-user", @placeholder = "Enter Address 1...", @required = "required" })
+                                @Html.TextBoxFor(m => m.Address2, new { @class = "form-control form-control-user", @placeholder = "Enter Address 2...", @required = "required" })
+                                @Html.TextBoxFor(m => m.Address3, new { @class = "form-control form-control-user", @placeholder = "Enter Address 3...", @required = "required" })
+                                @Html.TextBoxFor(m => m.Address4, new { @class = "form-control form-control-user", @placeholder = "Enter Address 4...", @required = "required" })
+
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control form-control-user", @placeholder = "Enter Postal Code...", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-user" id="">
+                                Submit
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.onreadystatechange = function () {
+        if (this.readyState === 'complete') {
+            SetNavActive('User');
+        }
+    };
+</script>

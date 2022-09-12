@@ -1,0 +1,29 @@
+﻿input.invalid {
+    border: solid red 2px;
+}
+
+label.invalid {
+    color: red;
+}
+
+label.invalid:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+.erorrTemplate {
+    display: none;
+}
+
+.ErrorAlert {
+    display: grid;
+}
+
+.onFocus {
+    border: solid blue 2px !important;
+}
+
+.errorImage{
+    display:inline;
+}

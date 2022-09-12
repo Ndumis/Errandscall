@@ -1,0 +1,200 @@
+﻿@model ErrandscallDatabase.Client
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+
+    ViewBag.Title = "Register";
+}
+
+<div class="page-wrapper p-t-30 p-b-100 font-poppins">
+    <div class="wrapper wrapper--w780">
+        <div class="card card-4">
+            <div class="card-body">
+                <div class="">
+                    <img src="~/Content/Images/logo.png" style="height:150px; width:100%" />
+                </div>
+                <h2 class="title" align="center">Register</h2>
+                <hr />
+                <br />
+                <h3>Personal Details </h3>
+                <hr />
+                <br />
+                @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">Are You A Foreign National? *</label>
+                                <div class="p-t-10">
+                                    <label class="radio-container m-r-45">
+                                        Yes
+                                        @Html.RadioButton("Citizen", "ForeignId")
+                                        @Html.ValidationMessage("Citizen", "", new { @class = "text-danger" })
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="radio-container">
+                                        No
+                                        @Html.RadioButton("Citizen", "IdNumber")
+                                        @Html.ValidationMessage("Citizen", "", new { @class = "text-danger" })
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space ">
+                        <div class="col-6 IdType" id="IdNumber">
+                            <div class="input-group">
+                                <label class="label">Id Number *</label>
+                                @Html.TextBoxFor(m => m.IdNo, new { @class = "input--style-4", @id = "CitIdNumber" })
+                                @Html.ValidationMessageFor(model => model.IdNo, "", new { @class = "text-danger" })
+                                <p>13 digit number</p>
+                                <div id="success_message"> </div>
+                            </div>
+                        </div>
+                        <div class="col-6 IdType" id="ForeignId">
+                            <div class="input-group">
+                                <label class="label">Trafic Register Number *</label>
+                                @Html.TextBoxFor(m => m.IdNo, new { @class = "input--style-4", @id = "CitForeignId" })
+                                @Html.ValidationMessageFor(model => model.IdNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">Id Document *</label>
+                                <input style="width:100%;" type="file" class="input--style-4" name="IdDocuments" id="IdDocuments" multiple="multiple" />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">Date of Birth *</label>
+                                @Html.TextBoxFor(m => m.Dob, new { @class = "input--style-4  DateOfBirth", @required = "required", autocomplete = "off" })
+                                @Html.ValidationMessageFor(model => model.Dob, "", new { @class = "text-danger" })
+                                <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar" style="float: right; margin-top: -25px; padding-right: 10px; position: relative; z-index: 1; cursor: pointer; color: #000;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <br />
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">Initials *</label>
+                                @Html.TextBoxFor(m => m.Initials, new { @class = "input--style-4", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Initials, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">Full Names *</label>
+                                @Html.TextBoxFor(m => m.Name, new { @class = "input--style-4", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">Surname *</label>
+                                @Html.TextBoxFor(m => m.Surname, new { @class = "input--style-4", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Initials, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-4">
+                            <div class="input-group">
+                                <label class="label">Email</label>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "input--style-4", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">Confrim Email</label>
+                                <input class="input--style-4" type="email" name="ConfrimEmail">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <label class="label">Cellphone Number *</label>
+                                @Html.TextBoxFor(m => m.CellNumber, new { @class = "input--style-4 CellNo", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.CellNumber, "", new { @class = "text-danger" })
+                                <p>Cellphone number is required for OTP verification.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label">Phusical Address</label>
+                                @Html.TextBoxFor(m => m.Address1, new { @class = "input--style-4", @placeholder = "Enter Address 1...", @required = "required" })
+                                @Html.TextBoxFor(m => m.Address2, new { @class = "input--style-4", @placeholder = "Enter Address 2...", @required = "required" })
+                                @Html.TextBoxFor(m => m.Address3, new { @class = "input--style-4", @placeholder = "Enter Address 3...", @required = "required" })
+                                @Html.TextBoxFor(m => m.Address4, new { @class = "input--style-4", @placeholder = "Enter Address 4...", @required = "required" })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">Poastal Code</label>
+                                @Html.TextBoxFor(m => m.PostalCode, new { @class = "input--style-4", @placeholder = "Enter Postal Code...", @required = "required" })
+                                @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <br />
+                    <h3>Login Details</h3>
+                    <hr />
+                    <br />
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">Password</label>
+                                <input class="input--style-4 CheckPassword" type="password" name="Password" id="Password">
+                                <i onclick="showPassword('Password')" class="fa fa-eye-slash" id="display" style="float: right; margin-top: -25px; margin-left:90%; padding-right: 10px; position: relative; z-index: 1; cursor: pointer; color: #000;">  </i>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label class="label">Confrim Password</label>
+                                <input class="input--style-4 CheckPassword" type="password" name="ConfirmPassword" id="ConfirmPassword">
+                                <i onclick="showPassword('ConfirmPassword')" class="fa fa-eye-slash" id="display" style="float: right; margin-top: -25px; margin-left:90%; padding-right: 10px; position: relative; z-index: 1; cursor: pointer; color: #000;">  </i>
+                            </div>
+                        </div>
+                        <label id="CPassword" style="color:red"> </label>
+                    </div>
+
+                    <div class="p-t-15">
+                        <button id="submit" class="btn btn--radius btn--green" type="submit">Submit</button>
+                    </div>
+                    <br />
+                    <hr />
+                    <br />
+                    <div class="row row-space">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <label class="label">Already a user?  <a href="/Login/Index"> Login</a></label>
+                            </div>
+                            <div class="input-group">
+                                <label class="label">Click <a href="https://www.errandscall.co.za/"> HERE</a> to go back to the Website</label>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+   
+</script>

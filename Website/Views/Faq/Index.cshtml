@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "FAQ";
+}
+
+<style>
+    .collapsible {
+        background-color: #ff9933;
+        color: white;
+        cursor: pointer;
+        padding: 13px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .collapsible:hover {
+            background: linear-gradient(to right,#ff105f, #ffad06);
+            !important;
+            color: #000;
+        }
+
+        .collapsible:after {
+            content: '\002B';
+            color: white;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+    .active1:after {
+        content: "\2212";
+    }
+
+    .content {
+        padding: 5px 15px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        background-color: #fff;
+    }
+</style>
+
+<!-- END nav -->
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/logo.png'); background-size: contain">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+            <div class="col-md-9 ftco-animate pb-5">
+                <p class="breadcrumbs mb-2"><span class="mr-2"><a href="/Home/">Home <i class="fa fa-chevron-right"></i></a></span> <span>FAQ's <i class="fa fa-chevron-right"></i></span></p>
+                <h1 class="mb-0 bread">FAQ's</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-no-pt ftco-no-pb bg-light" @*style="margin-top:50px; margin-bottom:50px;"*@>
+    <div class="container">
+        <div class="row d-flex no-gutters">
+            <div class="col-md-8">
+                <div class="row justify-content-start py-5">
+                    <div class="col-md-12 heading-section ftco-animate">
+                        <button class="collapsible">How do I make payment?</button>
+                        <div class="content">
+                            <p>We have various online payment options, including direct EFT. No refund can be done on a licence transaction once the licence has been processed and paid for.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 heading-section ftco-animate">
+                        <button class="collapsible">What happens if I do not timeously make payment of the invoice?</button>
+                        <div class="content">
+                            <p>The invoice will be canceled after 72 hours, and you will need to make a new application on your online profile.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 heading-section ftco-animate">
+                        <button class="collapsible">What happens if I have infringement notices against my name?</button>
+                        <div class="content">
+                            <p>We will contact you and advise you about the value of your infringement notices, and at your instruction, we’ll issue you another invoice for the infringement notices against your name for us to pay them on your behalf.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 heading-section ftco-animate">
+                        <button class="collapsible">Once I’ve made the payment, how will I know if my application has been received?</button>
+                        <div class="content">
+                            <p>We will send you an email to confirm that payment has been received</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 heading-section ftco-animate">
+                        <button class="collapsible">How can I track the status of my application?</button>
+                        <div class="content">
+                            <p>i. We will send you a tracking number for delivery via courier</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 heading-section ftco-animate">
+                        <button class="collapsible">When can I expect my licence disc to be delivered?</button>
+                        <div class="content">
+                            <p>We typically have a 48-hour (business days) turnaround time, and we’ll advise should there be any delays</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 heading-section ftco-animate">
+                        <button class="collapsible">In which areas is the delivery service currently available?</button>
+                        <div class="content">
+                            <p>We are currently only operating in Gauteng.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 heading-section ftco-animate">
+                        <button class="collapsible">What if I have more than one vehicle licence disc that I’d like to get renewed?</button>
+                        <div class="content">
+                            <p>We provide fleet services that allow you to renew the license discs of several vehicles under your management. Additionally, you can also upload more than one vehicle under your profile for renewal, including your trailer, boat, motorbikes, or caravan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active1");
+
+            var contents = document.querySelectorAll('div.content')
+            contents.forEach((content) => {
+                content.style.maxHeight = null;
+            })
+
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+
+</script>
+

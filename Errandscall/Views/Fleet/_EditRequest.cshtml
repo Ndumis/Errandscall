@@ -1,0 +1,72 @@
+﻿@model ErrandscallDatabase.Request
+
+@using (Html.BeginForm("_Request", "Fleet", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row justify-content-center">
+        <div class="card-body p-0">
+
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="p-5">
+
+                        <div class="form-group">
+                            @Html.HiddenFor(m => m.Id)
+                            @Html.Hidden("VehicleId", Model.Vehicle.Id)
+                            @Html.TextBoxFor(m => m.Vehicle.DayOfExpire, new { @class = "form-control form-control-user", @required = "required", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Vehicle.DayOfExpire, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Vehicle.Reg, new { @class = "form-control form-control-user", @required = "required", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Vehicle.Reg, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Vehicle.VehicleMake.Description, new { @class = "form-control form-control-user", @required = "required", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Vehicle.VehicleMake.Description, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownList("ServiceId", ViewBag.Service as SelectList, "--- Select Service Type ---", new { @id = "MakeId", @class = "form-control form-control-user ServiceId", @onchange = "VehicleMakeChange()", @required = "@required" })
+                            @Html.ValidationMessageFor(model => model.ServiceId, "", new { @class = "text-danger" })
+
+                        </div>
+                        @*<div class="form-group">
+                            <input style="width:100%;" type="file" class="form-control" name="RequestDoCs" id="RequestDoCs" multiple="multiple" />
+                        </div>*@
+                        <div class="form-group">
+                            <textarea name="Comment" class="form-control form-control-user" rows="4" placeholder="Enter motivitional comment..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-user" id="">
+                            Submit
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+}
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+<script>
+    $(document).ready(function () {
+
+        $(function () {
+            $(".ServiceId").chosen({ width: "100%" });
+
+            $("[data-mask]").inputmask();
+
+        });
+
+
+    })
+</script>

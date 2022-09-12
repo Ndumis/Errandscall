@@ -1,0 +1,481 @@
+﻿
+@{
+    ViewBag.Title = "Services";
+}
+
+<!-- END nav -->
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/logo.png'); background-size: contain">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+            <div class="col-md-9 ftco-animate pb-5">
+                <p class="breadcrumbs mb-2"><span class="mr-2"><a href="/Home/">Home <i class="fa fa-chevron-right"></i></a></span> <span>Services <i class="fa fa-chevron-right"></i></span></p>
+                <h1 class="mb-0 bread">Services</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="servicestab">
+    <div class="container">
+        <!--heading---------------->
+        <div class="s-heading">
+            <h1> Our <span> Services </span></h1>
+            <p>We have Professional Advisors eager to service all your enquiries and deliver excellent service.</p>
+            <p>We simplify your life by taking away the time you would spend waiting at the Traffic Department for the following:</p>
+        </div>
+        <!--services-box-container------------------->
+        <div class="s-box-container">
+            <!--service-box-1---------------->
+            <div class="s-box col-md-4">
+                <!--top-bar-------->
+                <div class="bar"></div>
+                <!--servies-name---------->
+                <h1>Vehicle License Renewal</h1>
+                <!-- <p>We handle annual vehicle license renewals. </p> -->
+                <!--btn---------->
+                <a data-toggle="modal" class="s-btn" href="#" onclick="serviceModal(true, 'VehicleLicenseRenewal')">More info</a>
+                <a class="s-btn" href="http://intranet.errandscall.co.za/">Login</a>
+
+                <!-- Modal view info -->
+                <div id="VehicleLicenseRenewal" style="display:none;">
+                    <h2>Vehicle License Renewal</h2>
+                    <p>We handle annual vehicle license renewals.</p>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Documents Required:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Clear copy of your ID (ID picture must be visible)</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Renewal reminder or copy of previous license/registration paper</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Physical address</b></span></a></li>
+                                <br />
+                                <li><a href="#" class="py-1 d-block"> Duration of service: <b style="color:black">2 to 3 business days</b></a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--service-box-1---------------->
+            <div class="s-box col-md-4">
+                <!--top-bar-------->
+                <div class="bar"></div>
+                <!--servies-name---------->
+                <h1>Online Drivers License Renewal Booking</h1>
+                <!-- <p>We simplify the process by booking the appointment for you.</p> -->
+                <!--btn---------->
+                <a data-toggle="modal" class="s-btn" href="#" onclick="serviceModal(true, 'OnlineDriversLicenseRenewalBooking')">More info</a>
+                <a class="s-btn" href="http://intranet.errandscall.co.za/">Login</a>
+
+                <!-- Modal view info -->
+                <div id="OnlineDriversLicenseRenewalBooking" style="display:none;">
+                    <h2>Online Drivers License Renewal Booking</h2>
+                    <p>With the new online booking system implemented, we at Errandscall will simplify the process by booking the appointment for you. We will collect your driving license on your behalf and deliver it to your doorstep.</p>
+
+                </div>
+
+            </div>
+            <!--service-box-3---------------->
+            <div class="s-box col-md-4">
+                <!--top-bar-------->
+                <div class="bar"></div>
+                <!--servies-name---------->
+                <h1>Business Vehicle Registration</h1>
+                <!-- <p>When a company registers a vehicle onto their name, they require a NATIS Number provided by the license department.</p> -->
+                <!--btn---------->
+                <a data-toggle="modal" class="s-btn" href="#" onclick="serviceModal(true, 'BusinessVehicleRegistration')">More info</a>
+                <a class="s-btn" href="http://intranet.errandscall.co.za/">Login</a>
+
+                <!-- Modal view info -->
+                <div id="BusinessVehicleRegistration" style="display:none;">
+                    <h2>Business Vehicle Registration</h2>
+                    <p>When a company registers a vehicle onto their name, they require a NATIS Number provided by the license department.</p>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Documents Required:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> CK or PTY document</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Company owner ID copy to act as proxy (ID picture must be visible)</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Original letter head</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Proof of company physical address</b></span></a></li>
+                                <br />
+                                <li><a href="#" class="py-1 d-block"> Duration of service: <b style="color:black">2 to 3 business days</b></a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--services-box-container------------------->
+        <div class="s-box-container">
+            <!--service-box-3---------------->
+            <div class="s-box col-md-4">
+                <!--top-bar-------->
+                <div class="bar"></div>
+                <!--servies-name---------->
+                <h1>Vehicle De-registration / Stolen / Scrap</h1>
+                <!--btn---------->
+                <a data-toggle="modal" class="s-btn" href="#" onclick="serviceModal(true, 'VehicleDe-registration')">More info</a>
+                <a class="s-btn" href="http://intranet.errandscall.co.za/">Login</a>
+
+                <!-- Modal view info -->
+                <div id="VehicleDe-registration" style="display:none;">
+                    <h2>Vehicle De-registration / Stolen / Scrap</h2>
+                    <p>If a vehicle has been written off in an accident, stolen or required to be de-registered as unfit for use.</p>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Documents Required:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Copy of owner's ID</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> If the vehicle was written, off photos of the damaged vehicle or a letter from the insurance or assessor confirming that the vehicle is unfit for use.</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> If the vehicle was stolen: Police case number and police station location where the theft was reported.</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> If the vehicle is unfit for use: affidavit requesting to De-register</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Original registration document (RC1)</b></span></a></li>
+                                <br />
+                                <li><a href="#" class="py-1 d-block"><b style="color:black"> NOTE:</b> No license fee is required unless the vehicle has outstanding licensing fees due.</b></a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--service-box-3---------------->
+            <div class="s-box col-md-4">
+                <!--top-bar-------->
+                <div class="bar"></div>
+                <!--servies-name---------->
+                <h1>Change of Ownership</h1>
+                <!--btn---------->
+                <a data-toggle="modal" class="s-btn" href="#" onclick="serviceModal(true, 'ChangeOfOwnership')">More info</a>
+                <a class="s-btn" href="http://intranet.errandscall.co.za/">Login</a>
+
+                <!-- Modal view info -->
+                <div id="ChangeOfOwnership" style="display:none;">
+                    <h2>Change of Ownership</h2>
+                    <p>We register and license vehicle in the buyer's name.</p>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Documents Required:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Original Registration certificate (RC1) </b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Buyer ID copy</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Buyer proof of address</b></span></a></li>
+                                <br />
+                                <li><a href="#" class="py-1 d-block"><b style="color:black"> NOTE:</b> to register under a company we require proxy id copy and company BRN (Business Registration Number)</b></a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--service-box-3---------------->
+            <div class="s-box col-md-4">
+                <!--top-bar-------->
+                <div class="bar"></div>
+                <!--servies-name---------->
+                <h1>Roadworthy</h1>
+                <!--btn---------->
+                <!--btn---------->
+                <a data-toggle="modal" class="s-btn" href="#" onclick="serviceModal(true, 'Roadworthy')">More info</a>
+                <a class="s-btn" href="http://intranet.errandscall.co.za/">Login</a>
+
+                <!-- Modal view info -->
+                <div id="Roadworthy" style="display:none;">
+                    <h2>Roadworthy</h2>
+                    <p>We assist with roadworthy processes. Any vehicle used on South African roads must comply with a roadworthy test, a vehicle must undergo a roadworthy test when you:</p>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Purchase a used vehicle. </b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Change vehicle color.</b></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Documents Required:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Owner ID copy (ID picture must be visible) </b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Copy of vehicle registration document or license disc</b></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Procedure:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Call our office to book a date and time </b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Bring your car to our office</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Test will take between 20-40 min</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> You can choose to wait or to come back to collect</b></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--services-box-container------------------->
+        <div class="s-box-container">
+            <!--service-box-3---------------->
+            <div class="s-box col-md-4">
+                <!--top-bar-------->
+                <div class="bar"></div>
+                <!--servies-name---------->
+                <h1>Police Clearance</h1>
+                <!--btn---------->
+                <a data-toggle="modal" class="s-btn" href="#" onclick="serviceModal(true, 'PoliceClearance')">More info</a>
+                <a class="s-btn" href="http://intranet.errandscall.co.za/">Login</a>
+
+                <!-- Modal view info -->
+                <div id="PoliceClearance" style="display:none;">
+                    <h2>Police Clearance</h2>
+                    <p>We assist with Police Clearance processes. If a vehicle is stolen and recovered or has had its engine replaced, it needs to undergo a process of Police Clearance. We will take your vehicle to the relevant police department and make sure that your vehicle stays in good hands until the police complete their work.</p>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Documents Required:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Owner ID copy (ID picture must be visible) </b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Original registration documents (Copy if vehicle is financed)</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> For change of engine, invoice is required</b></span></a></li>
+                                <br />
+                                <li><a href="#" class="py-1 d-block">*For this service you will need to book with the office.</a> </li>
+                                <br />
+                                <li><a href="#" class="py-1 d-block"> Duration of service: <b style="color:black">2 to 3 business days</b></a> </li>
+                                <br />
+                                <li><a href="#" class="py-1 d-block"> <b style="color:black">NOTE:</b> vehicles made before 2012 will require Data Dot <b style="color:black">(DataDots are tiny polyester particles that are laser inscribed with unique information. Each microdot is no larger than 1mm in diameter. 10 000 of these Microdots are applied to motor</b> vehicles <b style="color:black"> using a special adhesive. The information etched onto the Microdots relates exclusively to the identity of the applied vehicle).</b></a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--service-box-3---------------->
+            <div class="s-box col-md-4">
+                <!--top-bar-------->
+                <div class="bar"></div>
+                <!--servies-name---------->
+                <h1>Personalised Number Plates</h1>
+                <!--btn---------->
+                <a data-toggle="modal" class="s-btn" href="#" onclick="serviceModal(true, 'PersonalisedNumberPlates')">More info</a>
+                <a class="s-btn" href="http://intranet.errandscall.co.za/">Login</a>
+
+                <!-- Modal view info -->
+                <div id="PersonalisedNumberPlates" style="display:none;">
+                    <h2>Personalised Number Plates</h2>
+                    <p>We manufacture and register client specific number plates. These include:</p>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Personalised Number Plates:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="mr-3"> <b> This is a registration number with any alphabetic characters - A minimum of three and maximum of seven characters. Example: ERRANDS GP</b></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Special Number Plates: </h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="mr-3"> <b> This is a registration number with three numbers and three letters (in any order) of your choice.</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Example 1: 123 ERC GP</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Example 2: ERC 123 GP</b></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Documents Required:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Owner ID copy (ID picture must be visible) </b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Copy of vehicle registration or license disc</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Physical address</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Three option to choose from</b></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Service includes:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> PRN Certificate </b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Set of new number plate</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Allocation of new PRN to your vehicle</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> New license disc for full year</b></span></a></li>
+                                <br />
+                                <li><a href="#" class="py-1 d-block"> Duration of service: <b style="color:black">7 to 10 business days</b></a> </li>
+                                <br />
+                                <li><a href="#" class="py-1 d-block"> <b style="color:black">NOTE:</b> Due to the high demand for personalised plates, you will need to provide us with three options for your registration number. We cannot guarantee that the first option will be available.</b></a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--service-box-3---------------->
+            <div class="s-box col-md-4">
+                <!--top-bar-------->
+                <div class="bar"></div>
+                <!--servies-name---------->
+                <h1>Change of Province</h1>
+                <!--btn---------->
+                <a data-toggle="modal" class="s-btn" href="#" onclick="serviceModal(true, 'ChangeOfProvince')">More info</a>
+                <a class="s-btn" href="http://intranet.errandscall.co.za/">Login</a>
+
+                <!-- Modal view info -->
+                <div id="ChangeOfProvince" style="display:none;">
+                    <h2>Change of Province</h2>
+                    <p>We notify the traffic department should you change your province. If you are a business, we will inform the traffic department of any changes in business details.</p>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Documents Required:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Copy of your ID (ID picture must be visible)</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Vehicle details (copy of license disc is sufficient)</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Proof of new address</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> We will change your address and issue you with a new license DISC, we also manufacture new GP number plates.</b></span></a></li>
+                                <br />
+                                <li><a href="#" class="py-1 d-block"> Duration of service: <b style="color:black">1 to 2 business days</b></a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--services-box-container------------------->
+        <div class="s-box-container">
+            <!--service-box-3---------------->
+            <div class="s-box col-md-4">
+                <!--top-bar-------->
+                <div class="bar"></div>
+                <!--servies-name---------->
+                <h1>Number Plate Manufacturing</h1>
+                <!--btn---------->
+                <!--btn---------->
+                <a data-toggle="modal" class="s-btn" href="#" onclick="serviceModal(true, 'NumberPlateManufacturing')">More info</a>
+                <a class="s-btn" href="http://intranet.errandscall.co.za/">Login</a>
+
+                <!-- Modal view info -->
+                <div id="NumberPlateManufacturing" style="display:none;">
+                    <h2>Number Plate Manufacturing</h2>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Sizes available:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Standard: 440 cm x 120 cm</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Long: 520 cm x 110 cm</b></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Documents Required:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Copy of vehicle registration document or license dis</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> D Copy of owner or person applying (ID picture must be visible)</b></span></a></li>
+                                <br />
+                                <li><a href="#" class="py-1 d-block"> Duration of service: <b style="color:black"> 5 to 10 minutes</b></a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--service-box-3---------------->
+            <div class="s-box col-md-4">
+                <!--top-bar-------->
+                <div class="bar"></div>
+                <!--servies-name---------->
+                <h1>Vehicle Sold / Trade In</h1>
+                <!--btn---------->
+                <a data-toggle="modal" class="s-btn" href="#" onclick="serviceModal(true, 'VehicleSold-TradeIn')">More info</a>
+                <a class="s-btn" href="http://intranet.errandscall.co.za/">Login</a>
+
+                <!-- Modal view info -->
+                <div id="VehicleSold-TradeIn" style="display:none;">
+                    <h2>Vehicle Sold / Trade In</h2>
+                    <p>We assist with Notification of Change of vehicle ownership. When selling your vehicle, your local licensing department must be notified of a change ownership.</p>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Documents Required:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Copy of the buyer's ID </b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Copy of the seller's ID</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Copy of the registration document (RC1)</b></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--service-box-3---------------->
+            <div class="s-box col-md-4">
+                <!--top-bar-------->
+                <div class="bar"></div>
+                <!--servies-name---------->
+                <h1>Change of Title Holder</h1>
+                <!--btn---------->
+                <a data-toggle="modal" class="s-btn" href="#" onclick="serviceModal(true, 'ChangeOfTitleHolder')">More info</a>
+                <a class="s-btn" href="http://intranet.errandscall.co.za/">Login</a>
+
+                <!-- Modal view info -->
+                <div id="ChangeOfTitleHolder" style="display:none;">
+                    <h2>Change of Title Holder</h2>
+                    <p>We assist with Notification of Change of vehicle ownership. When selling your vehicle, your local licensing department must be notified of a change ownership.</p>
+
+                    <div class="col-md-6 col-lg">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h4 class="ftco-heading-2">Documents Required:</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Copy of the owner ID </b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Original registration certificate (RC1)</b></span></a></li>
+                                <li><a href="#" class="py-1 d-block"><span class="fa fa-check mr-3"> <b> Settlement letter from the Finance bank.</b></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--services-box-container------------------->
+        <div class="s-box-container">
+            <!--service-box-3---------------->
+            <div class="s-box col-md-4">
+                <!--top-bar-------->
+                <div class="bar"></div>
+                <!--servies-name---------->
+                <h1>Other Services</h1>
+                <!--btn---------->
+                <a data-toggle="modal" class="s-btn" href="#" onclick="serviceModal(true, 'OtherServices')">More info</a>
+                <a class="s-btn" href="http://intranet.errandscall.co.za/">Login</a>
+
+                <!-- Modal view info -->
+                <div id="OtherServices" style="display:none;">
+                    <h2>Other Services</h2>
+                    <p>ERRANDSCALL can provide any service required at the vehicle license dept. Please send us an email with your special service request.</p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+
+    function serviceModal(Clear, type) {
+        result = $('#' + type).html();
+        if (Clear)
+            $('#exampleModalBody').html(result);
+        else
+            $('#exampleModalBody').html();
+        $('#myModal').modal('show');
+    }
+
+</script>
+

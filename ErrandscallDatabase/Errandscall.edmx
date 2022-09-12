@@ -1,0 +1,1221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ErrandscallModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="LastLogin" Type="datetime" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="UserRoleId" Type="int" Nullable="false" />
+          <Property Name="OTP" Type="nvarchar(max)" />
+          <Property Name="RequestDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CitizenId" Type="int" Nullable="false" />
+          <Property Name="Initials" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="CellNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dob" Type="nvarchar" MaxLength="50" />
+          <Property Name="Picture" Type="varbinary(max)" />
+          <Property Name="Address1" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address2" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address3" Type="nvarchar(max)" />
+          <Property Name="Address4" Type="nvarchar(max)" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="AddedOnDateTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleId" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="ServiceId" Type="int" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="AddedOnDateTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RequestDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestId" Type="int" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="document_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="document_mime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="document_data" Type="varbinary(max)" Nullable="false" />
+          <Property Name="document_index" Type="int" Nullable="false" />
+          <Property Name="AddedOnDateTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="MakeId" Type="int" Nullable="false" />
+          <Property Name="ModelId" Type="int" Nullable="false" />
+          <Property Name="VIN" Type="nvarchar(max)" />
+          <Property Name="Reg" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DayOfExpire" Type="nvarchar(max)" />
+          <Property Name="AddedOnDateTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VehicleDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleId" Type="int" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="document_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="document_mime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="document_data" Type="varbinary(max)" Nullable="false" />
+          <Property Name="document_index" Type="int" Nullable="false" />
+          <Property Name="AddedOnDateTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Method" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AddedOnDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Citizen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RequestStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VehicleMake">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VehicleModel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MakeId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="Video" Type="varbinary(max)" />
+          <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AddedOnDateTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="RequestId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+          <Property Name="AddedOnDateTime" Type="datetime" Nullable="false" />
+          <Property Name="LastModifiedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Client_Citizen">
+          <End Role="Citizen" Type="Self.Citizen" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Citizen">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="CitizenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documents_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1" />
+          <End Role="RequestDocument" Type="Self.RequestDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestDocument">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feed_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Feed" Type="Self.Feed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feed">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Login_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Login_UserRole">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="UserRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_Request">
+          <End Role="Request" Type="Self.Request" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Model_VehicleMake">
+          <End Role="VehicleMake" Type="Self.VehicleMake" Multiplicity="1" />
+          <End Role="VehicleModel" Type="Self.VehicleModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleMake">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VehicleModel">
+              <PropertyRef Name="MakeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_RequestStatus">
+          <End Role="RequestStatus" Type="Self.RequestStatus" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Vehicle">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestDocument_DocumentType">
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+          <End Role="RequestDocument" Type="Self.RequestDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestDocument">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_VehicleMake">
+          <End Role="VehicleMake" Type="Self.VehicleMake" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleMake">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="MakeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_VehicleModel">
+          <End Role="VehicleModel" Type="Self.VehicleModel" Multiplicity="1" />
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleModel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="ModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleDocument_DocumentType">
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+          <End Role="VehicleDocument" Type="Self.VehicleDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VehicleDocument">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleDocument_Vehicle">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="VehicleDocument" Type="Self.VehicleDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VehicleDocument">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ErrandscallModelStoreContainer">
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="Admin" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="Client" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="Client" store:Type="Tables" />
+          <EntitySet Name="RequestDocument" EntityType="Self.RequestDocument" Schema="Client" store:Type="Tables" />
+          <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="Client" store:Type="Tables" />
+          <EntitySet Name="VehicleDocument" EntityType="Self.VehicleDocument" Schema="Client" store:Type="Tables" />
+          <EntitySet Name="ServiceMessage" EntityType="Self.ServiceMessage" Schema="Log" store:Type="Tables" />
+          <EntitySet Name="Citizen" EntityType="Self.Citizen" Schema="Lookup" store:Type="Tables" />
+          <EntitySet Name="DocumentType" EntityType="Self.DocumentType" Schema="Lookup" store:Type="Tables" />
+          <EntitySet Name="RequestStatus" EntityType="Self.RequestStatus" Schema="Lookup" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="Lookup" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="Lookup" store:Type="Tables" />
+          <EntitySet Name="VehicleMake" EntityType="Self.VehicleMake" Schema="Lookup" store:Type="Tables" />
+          <EntitySet Name="VehicleModel" EntityType="Self.VehicleModel" Schema="Lookup" store:Type="Tables" />
+          <EntitySet Name="Feed" EntityType="Self.Feed" Schema="News" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="Request" store:Type="Tables" />
+          <AssociationSet Name="FK_Client_Citizen" Association="Self.FK_Client_Citizen">
+            <End Role="Citizen" EntitySet="Citizen" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documents_Request" Association="Self.FK_Documents_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="RequestDocument" EntitySet="RequestDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feed_Client" Association="Self.FK_Feed_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Feed" EntitySet="Feed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Login_Client" Association="Self.FK_Login_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Login_UserRole" Association="Self.FK_Login_UserRole">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_Client" Association="Self.FK_Message_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_Request" Association="Self.FK_Message_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Model_VehicleMake" Association="Self.FK_Model_VehicleMake">
+            <End Role="VehicleMake" EntitySet="VehicleMake" />
+            <End Role="VehicleModel" EntitySet="VehicleModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Client" Association="Self.FK_Request_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_RequestStatus" Association="Self.FK_Request_RequestStatus">
+            <End Role="RequestStatus" EntitySet="RequestStatus" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Services" Association="Self.FK_Request_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Vehicle" Association="Self.FK_Request_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestDocument_DocumentType" Association="Self.FK_RequestDocument_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="RequestDocument" EntitySet="RequestDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_Client" Association="Self.FK_Vehicle_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_VehicleMake" Association="Self.FK_Vehicle_VehicleMake">
+            <End Role="VehicleMake" EntitySet="VehicleMake" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_VehicleModel" Association="Self.FK_Vehicle_VehicleModel">
+            <End Role="VehicleModel" EntitySet="VehicleModel" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleDocument_DocumentType" Association="Self.FK_VehicleDocument_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="VehicleDocument" EntitySet="VehicleDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleDocument_Vehicle" Association="Self.FK_VehicleDocument_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="VehicleDocument" EntitySet="VehicleDocument" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ErrandscallModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ErrandscallEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Login" EntityType="ErrandscallModel.Login" />
+          <EntitySet Name="Client" EntityType="ErrandscallModel.Client" />
+          <EntitySet Name="Request" EntityType="ErrandscallModel.Request" />
+          <EntitySet Name="RequestDocument" EntityType="ErrandscallModel.RequestDocument" />
+          <EntitySet Name="Vehicle" EntityType="ErrandscallModel.Vehicle" />
+          <EntitySet Name="VehicleDocument" EntityType="ErrandscallModel.VehicleDocument" />
+          <EntitySet Name="ServiceMessage" EntityType="ErrandscallModel.ServiceMessage" />
+          <EntitySet Name="Citizen" EntityType="ErrandscallModel.Citizen" />
+          <EntitySet Name="DocumentType" EntityType="ErrandscallModel.DocumentType" />
+          <EntitySet Name="RequestStatus" EntityType="ErrandscallModel.RequestStatus" />
+          <EntitySet Name="Services" EntityType="ErrandscallModel.Services" />
+          <EntitySet Name="UserRole" EntityType="ErrandscallModel.UserRole" />
+          <EntitySet Name="VehicleMake" EntityType="ErrandscallModel.VehicleMake" />
+          <EntitySet Name="VehicleModel" EntityType="ErrandscallModel.VehicleModel" />
+          <EntitySet Name="Feed" EntityType="ErrandscallModel.Feed" />
+          <EntitySet Name="Message" EntityType="ErrandscallModel.Message" />
+          <AssociationSet Name="FK_Login_Client" Association="ErrandscallModel.FK_Login_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Login_UserRole" Association="ErrandscallModel.FK_Login_UserRole">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Citizen" Association="ErrandscallModel.FK_Client_Citizen">
+            <End Role="Citizen" EntitySet="Citizen" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feed_Client" Association="ErrandscallModel.FK_Feed_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Feed" EntitySet="Feed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_Client" Association="ErrandscallModel.FK_Message_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Client" Association="ErrandscallModel.FK_Request_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_Client" Association="ErrandscallModel.FK_Vehicle_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documents_Request" Association="ErrandscallModel.FK_Documents_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="RequestDocument" EntitySet="RequestDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_Request" Association="ErrandscallModel.FK_Message_Request">
+            <End Role="Request" EntitySet="Request" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_RequestStatus" Association="ErrandscallModel.FK_Request_RequestStatus">
+            <End Role="RequestStatus" EntitySet="RequestStatus" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Services" Association="ErrandscallModel.FK_Request_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Request_Vehicle" Association="ErrandscallModel.FK_Request_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestDocument_DocumentType" Association="ErrandscallModel.FK_RequestDocument_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="RequestDocument" EntitySet="RequestDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_VehicleMake" Association="ErrandscallModel.FK_Vehicle_VehicleMake">
+            <End Role="VehicleMake" EntitySet="VehicleMake" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicle_VehicleModel" Association="ErrandscallModel.FK_Vehicle_VehicleModel">
+            <End Role="VehicleModel" EntitySet="VehicleModel" />
+            <End Role="Vehicle" EntitySet="Vehicle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleDocument_Vehicle" Association="ErrandscallModel.FK_VehicleDocument_Vehicle">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="VehicleDocument" EntitySet="VehicleDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VehicleDocument_DocumentType" Association="ErrandscallModel.FK_VehicleDocument_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="VehicleDocument" EntitySet="VehicleDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Model_VehicleMake" Association="ErrandscallModel.FK_Model_VehicleMake">
+            <End Role="VehicleMake" EntitySet="VehicleMake" />
+            <End Role="VehicleModel" EntitySet="VehicleModel" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserRoleId" Type="Int32" Nullable="false" />
+          <Property Name="OTP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequestDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Client" Relationship="ErrandscallModel.FK_Login_Client" FromRole="Login" ToRole="Client" />
+          <NavigationProperty Name="UserRole" Relationship="ErrandscallModel.FK_Login_UserRole" FromRole="Login" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CitizenId" Type="Int32" Nullable="false" />
+          <Property Name="Initials" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CellNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dob" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="AddedOnDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Login" Relationship="ErrandscallModel.FK_Login_Client" FromRole="Client" ToRole="Login" />
+          <NavigationProperty Name="Citizen" Relationship="ErrandscallModel.FK_Client_Citizen" FromRole="Client" ToRole="Citizen" />
+          <NavigationProperty Name="Feed" Relationship="ErrandscallModel.FK_Feed_Client" FromRole="Client" ToRole="Feed" />
+          <NavigationProperty Name="Message" Relationship="ErrandscallModel.FK_Message_Client" FromRole="Client" ToRole="Message" />
+          <NavigationProperty Name="Request" Relationship="ErrandscallModel.FK_Request_Client" FromRole="Client" ToRole="Request" />
+          <NavigationProperty Name="Vehicle" Relationship="ErrandscallModel.FK_Vehicle_Client" FromRole="Client" ToRole="Vehicle" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleId" Type="Int32" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="AddedOnDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Client" Relationship="ErrandscallModel.FK_Request_Client" FromRole="Request" ToRole="Client" />
+          <NavigationProperty Name="RequestDocument" Relationship="ErrandscallModel.FK_Documents_Request" FromRole="Request" ToRole="RequestDocument" />
+          <NavigationProperty Name="Message" Relationship="ErrandscallModel.FK_Message_Request" FromRole="Request" ToRole="Message" />
+          <NavigationProperty Name="RequestStatus" Relationship="ErrandscallModel.FK_Request_RequestStatus" FromRole="Request" ToRole="RequestStatus" />
+          <NavigationProperty Name="Services" Relationship="ErrandscallModel.FK_Request_Services" FromRole="Request" ToRole="Services" />
+          <NavigationProperty Name="Vehicle" Relationship="ErrandscallModel.FK_Request_Vehicle" FromRole="Request" ToRole="Vehicle" />
+        </EntityType>
+        <EntityType Name="RequestDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="document_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="document_mime" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="document_data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="document_index" Type="Int32" Nullable="false" />
+          <Property Name="AddedOnDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Request" Relationship="ErrandscallModel.FK_Documents_Request" FromRole="RequestDocument" ToRole="Request" />
+          <NavigationProperty Name="DocumentType" Relationship="ErrandscallModel.FK_RequestDocument_DocumentType" FromRole="RequestDocument" ToRole="DocumentType" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="MakeId" Type="Int32" Nullable="false" />
+          <Property Name="ModelId" Type="Int32" Nullable="false" />
+          <Property Name="VIN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Reg" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DayOfExpire" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddedOnDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Client" Relationship="ErrandscallModel.FK_Vehicle_Client" FromRole="Vehicle" ToRole="Client" />
+          <NavigationProperty Name="Request" Relationship="ErrandscallModel.FK_Request_Vehicle" FromRole="Vehicle" ToRole="Request" />
+          <NavigationProperty Name="VehicleMake" Relationship="ErrandscallModel.FK_Vehicle_VehicleMake" FromRole="Vehicle" ToRole="VehicleMake" />
+          <NavigationProperty Name="VehicleModel" Relationship="ErrandscallModel.FK_Vehicle_VehicleModel" FromRole="Vehicle" ToRole="VehicleModel" />
+          <NavigationProperty Name="VehicleDocument" Relationship="ErrandscallModel.FK_VehicleDocument_Vehicle" FromRole="Vehicle" ToRole="VehicleDocument" />
+        </EntityType>
+        <EntityType Name="VehicleDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleId" Type="Int32" Nullable="false" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="document_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="document_mime" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="document_data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="document_index" Type="Int32" Nullable="false" />
+          <Property Name="AddedOnDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Vehicle" Relationship="ErrandscallModel.FK_VehicleDocument_Vehicle" FromRole="VehicleDocument" ToRole="Vehicle" />
+          <NavigationProperty Name="DocumentType" Relationship="ErrandscallModel.FK_VehicleDocument_DocumentType" FromRole="VehicleDocument" ToRole="DocumentType" />
+        </EntityType>
+        <EntityType Name="ServiceMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Method" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddedOnDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Citizen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="ErrandscallModel.FK_Client_Citizen" FromRole="Citizen" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RequestDocument" Relationship="ErrandscallModel.FK_RequestDocument_DocumentType" FromRole="DocumentType" ToRole="RequestDocument" />
+          <NavigationProperty Name="VehicleDocument" Relationship="ErrandscallModel.FK_VehicleDocument_DocumentType" FromRole="DocumentType" ToRole="VehicleDocument" />
+        </EntityType>
+        <EntityType Name="RequestStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Request" Relationship="ErrandscallModel.FK_Request_RequestStatus" FromRole="RequestStatus" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Request" Relationship="ErrandscallModel.FK_Request_Services" FromRole="Services" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Login" Relationship="ErrandscallModel.FK_Login_UserRole" FromRole="UserRole" ToRole="Login" />
+        </EntityType>
+        <EntityType Name="VehicleMake">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Vehicle" Relationship="ErrandscallModel.FK_Vehicle_VehicleMake" FromRole="VehicleMake" ToRole="Vehicle" />
+          <NavigationProperty Name="VehicleModel" Relationship="ErrandscallModel.FK_Model_VehicleMake" FromRole="VehicleMake" ToRole="VehicleModel" />
+        </EntityType>
+        <EntityType Name="VehicleModel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MakeId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Vehicle" Relationship="ErrandscallModel.FK_Vehicle_VehicleModel" FromRole="VehicleModel" ToRole="Vehicle" />
+          <NavigationProperty Name="VehicleMake" Relationship="ErrandscallModel.FK_Model_VehicleMake" FromRole="VehicleModel" ToRole="VehicleMake" />
+        </EntityType>
+        <EntityType Name="Feed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="Video" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddedOnDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Client" Relationship="ErrandscallModel.FK_Feed_Client" FromRole="Feed" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <Property Name="Message1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <Property Name="AddedOnDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifiedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Client" Relationship="ErrandscallModel.FK_Message_Client" FromRole="Message" ToRole="Client" />
+          <NavigationProperty Name="Request" Relationship="ErrandscallModel.FK_Message_Request" FromRole="Message" ToRole="Request" />
+        </EntityType>
+        <Association Name="FK_Login_Client">
+          <End Type="ErrandscallModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="ErrandscallModel.Login" Role="Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Login_UserRole">
+          <End Type="ErrandscallModel.UserRole" Role="UserRole" Multiplicity="1" />
+          <End Type="ErrandscallModel.Login" Role="Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="UserRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Citizen">
+          <End Type="ErrandscallModel.Citizen" Role="Citizen" Multiplicity="1" />
+          <End Type="ErrandscallModel.Client" Role="Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Citizen">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="CitizenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feed_Client">
+          <End Type="ErrandscallModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="ErrandscallModel.Feed" Role="Feed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feed">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_Client">
+          <End Type="ErrandscallModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="ErrandscallModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Client">
+          <End Type="ErrandscallModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="ErrandscallModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_Client">
+          <End Type="ErrandscallModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="ErrandscallModel.Vehicle" Role="Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documents_Request">
+          <End Type="ErrandscallModel.Request" Role="Request" Multiplicity="1" />
+          <End Type="ErrandscallModel.RequestDocument" Role="RequestDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestDocument">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_Request">
+          <End Type="ErrandscallModel.Request" Role="Request" Multiplicity="1" />
+          <End Type="ErrandscallModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_RequestStatus">
+          <End Type="ErrandscallModel.RequestStatus" Role="RequestStatus" Multiplicity="1" />
+          <End Type="ErrandscallModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Services">
+          <End Type="ErrandscallModel.Services" Role="Services" Multiplicity="1" />
+          <End Type="ErrandscallModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Request_Vehicle">
+          <End Type="ErrandscallModel.Vehicle" Role="Vehicle" Multiplicity="1" />
+          <End Type="ErrandscallModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestDocument_DocumentType">
+          <End Type="ErrandscallModel.DocumentType" Role="DocumentType" Multiplicity="1" />
+          <End Type="ErrandscallModel.RequestDocument" Role="RequestDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestDocument">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_VehicleMake">
+          <End Type="ErrandscallModel.VehicleMake" Role="VehicleMake" Multiplicity="1" />
+          <End Type="ErrandscallModel.Vehicle" Role="Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleMake">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="MakeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicle_VehicleModel">
+          <End Type="ErrandscallModel.VehicleModel" Role="VehicleModel" Multiplicity="1" />
+          <End Type="ErrandscallModel.Vehicle" Role="Vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleModel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vehicle">
+              <PropertyRef Name="ModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleDocument_Vehicle">
+          <End Type="ErrandscallModel.Vehicle" Role="Vehicle" Multiplicity="1" />
+          <End Type="ErrandscallModel.VehicleDocument" Role="VehicleDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VehicleDocument">
+              <PropertyRef Name="VehicleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VehicleDocument_DocumentType">
+          <End Type="ErrandscallModel.DocumentType" Role="DocumentType" Multiplicity="1" />
+          <End Type="ErrandscallModel.VehicleDocument" Role="VehicleDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VehicleDocument">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Model_VehicleMake">
+          <End Type="ErrandscallModel.VehicleMake" Role="VehicleMake" Multiplicity="1" />
+          <End Type="ErrandscallModel.VehicleModel" Role="VehicleModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehicleMake">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VehicleModel">
+              <PropertyRef Name="MakeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ErrandscallModelStoreContainer" CdmEntityContainer="ErrandscallEntities">
+          <EntitySetMapping Name="Login">
+            <EntityTypeMapping TypeName="ErrandscallModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="RequestDateTime" ColumnName="RequestDateTime" />
+                <ScalarProperty Name="OTP" ColumnName="OTP" />
+                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="ErrandscallModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="LastModifiedDateTime" ColumnName="LastModifiedDateTime" />
+                <ScalarProperty Name="AddedOnDateTime" ColumnName="AddedOnDateTime" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Address4" ColumnName="Address4" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="IdNo" ColumnName="IdNo" />
+                <ScalarProperty Name="CellNumber" ColumnName="CellNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Initials" ColumnName="Initials" />
+                <ScalarProperty Name="CitizenId" ColumnName="CitizenId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Request">
+            <EntityTypeMapping TypeName="ErrandscallModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="LastModifiedDateTime" ColumnName="LastModifiedDateTime" />
+                <ScalarProperty Name="AddedOnDateTime" ColumnName="AddedOnDateTime" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestDocument">
+            <EntityTypeMapping TypeName="ErrandscallModel.RequestDocument">
+              <MappingFragment StoreEntitySet="RequestDocument">
+                <ScalarProperty Name="LastModifiedDateTime" ColumnName="LastModifiedDateTime" />
+                <ScalarProperty Name="AddedOnDateTime" ColumnName="AddedOnDateTime" />
+                <ScalarProperty Name="document_index" ColumnName="document_index" />
+                <ScalarProperty Name="document_data" ColumnName="document_data" />
+                <ScalarProperty Name="document_mime" ColumnName="document_mime" />
+                <ScalarProperty Name="document_name" ColumnName="document_name" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicle">
+            <EntityTypeMapping TypeName="ErrandscallModel.Vehicle">
+              <MappingFragment StoreEntitySet="Vehicle">
+                <ScalarProperty Name="LastModifiedDateTime" ColumnName="LastModifiedDateTime" />
+                <ScalarProperty Name="AddedOnDateTime" ColumnName="AddedOnDateTime" />
+                <ScalarProperty Name="DayOfExpire" ColumnName="DayOfExpire" />
+                <ScalarProperty Name="Reg" ColumnName="Reg" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+                <ScalarProperty Name="MakeId" ColumnName="MakeId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleDocument">
+            <EntityTypeMapping TypeName="ErrandscallModel.VehicleDocument">
+              <MappingFragment StoreEntitySet="VehicleDocument">
+                <ScalarProperty Name="LastModifiedDateTime" ColumnName="LastModifiedDateTime" />
+                <ScalarProperty Name="AddedOnDateTime" ColumnName="AddedOnDateTime" />
+                <ScalarProperty Name="document_index" ColumnName="document_index" />
+                <ScalarProperty Name="document_data" ColumnName="document_data" />
+                <ScalarProperty Name="document_mime" ColumnName="document_mime" />
+                <ScalarProperty Name="document_name" ColumnName="document_name" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceMessage">
+            <EntityTypeMapping TypeName="ErrandscallModel.ServiceMessage">
+              <MappingFragment StoreEntitySet="ServiceMessage">
+                <ScalarProperty Name="AddedOnDateTime" ColumnName="AddedOnDateTime" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Method" ColumnName="Method" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Citizen">
+            <EntityTypeMapping TypeName="ErrandscallModel.Citizen">
+              <MappingFragment StoreEntitySet="Citizen">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentType">
+            <EntityTypeMapping TypeName="ErrandscallModel.DocumentType">
+              <MappingFragment StoreEntitySet="DocumentType">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestStatus">
+            <EntityTypeMapping TypeName="ErrandscallModel.RequestStatus">
+              <MappingFragment StoreEntitySet="RequestStatus">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="ErrandscallModel.Services">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRole">
+            <EntityTypeMapping TypeName="ErrandscallModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleMake">
+            <EntityTypeMapping TypeName="ErrandscallModel.VehicleMake">
+              <MappingFragment StoreEntitySet="VehicleMake">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleModel">
+            <EntityTypeMapping TypeName="ErrandscallModel.VehicleModel">
+              <MappingFragment StoreEntitySet="VehicleModel">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MakeId" ColumnName="MakeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feed">
+            <EntityTypeMapping TypeName="ErrandscallModel.Feed">
+              <MappingFragment StoreEntitySet="Feed">
+                <ScalarProperty Name="LastModifiedDateTime" ColumnName="LastModifiedDateTime" />
+                <ScalarProperty Name="AddedOnDateTime" ColumnName="AddedOnDateTime" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Video" ColumnName="Video" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message">
+            <EntityTypeMapping TypeName="ErrandscallModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="LastModifiedDateTime" ColumnName="LastModifiedDateTime" />
+                <ScalarProperty Name="AddedOnDateTime" ColumnName="AddedOnDateTime" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="Message1" ColumnName="Message" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

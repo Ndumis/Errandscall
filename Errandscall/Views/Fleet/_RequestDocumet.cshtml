@@ -1,0 +1,58 @@
+﻿@model ErrandscallDatabase.RequestDocument
+
+@using (Html.BeginForm("_RequestDocumet", "Fleet", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="modal-header">
+        <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Document </h1>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.RequestId)
+
+        <div class="form-group">
+            @Html.Label("Document Type", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-12">
+                @Html.DropDownList("TypeId", ViewBag.DocumentType as SelectList, "--- Select Type ---", new { @class = "form-control form-control-user", @required = "@required" })
+                @Html.ValidationMessageFor(model => model.TypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Attach Document</label>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <input style="width:100%;" type="file" class="form-control" name="requestDoc" id="requestDoc" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-12">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<script>
+    $(document).ready(function () {
+
+        $(function () {
+            $("#TypeId").chosen({ width: "100%" });
+
+            $("[data-mask]").inputmask();
+
+        });
+
+
+    })
+</script>
